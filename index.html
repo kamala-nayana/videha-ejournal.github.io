@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Videha Thesaurus</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data/sources.js"></script>
+  <script src="data/manifest.js"></script>
+  <script src="data/index_part_1.js"></script>
+  <script src="data/index_part_2.js"></script>
+  <script src="data/index_part_3.js"></script>
+  <script src="data/index_part_4.js"></script>
+  <script src="data/index_part_5.js"></script>
+  <script src="data/index_part_6.js"></script>
+  <script src="data/wordnet_part_1.js"></script>
+  <script src="data/wordnet_part_2.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="mark">V</div>
+      <div>
+        <h1>Videha Thesaurus</h1>
+        <p>English-Maithili · Maithili-English · Synonyms · Antonyms · WordNet reference</p>
+      </div>
+    </div>
+    <div class="status" id="status">Loading index…</div>
+  </header>
+
+  <main class="shell">
+    <aside class="panel controls">
+      <label class="searchbox">
+        <span>Search</span>
+        <input id="query" type="search" autocomplete="off" placeholder="Type a word, मैथिली शब्द, synonym, or meaning">
+      </label>
+      <div class="grid2">
+        <label><span>Volume</span><select id="volume"><option value="all">All</option><option value="em">English-Maithili</option><option value="me">Maithili-English</option><option value="wn">WordNet English</option></select></label>
+        <label><span>Section</span><select id="section"><option value="all">All</option></select></label>
+      </div>
+      <div class="segmented" role="group" aria-label="Search mode">
+        <button id="mode-headword" class="active" data-mode="headword">Headword</button>
+        <button id="mode-full" data-mode="full">Full text</button>
+      </div>
+      <div class="toggles">
+        <label><input id="onlySyn" type="checkbox"> Has synonym</label>
+        <label><input id="onlyAnt" type="checkbox"> Has antonym</label>
+      </div>
+      <button id="clear" class="secondary">Clear</button>
+
+      <section class="stats" id="stats"></section>
+      <section class="source-note" aria-label="Sources and citation">
+        <h2>Sources</h2>
+        <p>Videha English-Maithili and Maithili-English thesaurus data, with English lexical reference from WordNet.</p>
+        <p class="citation">Princeton University. &quot;About WordNet.&quot; <a href="https://wordnet.princeton.edu/" target="_blank" rel="noopener">WordNet</a>. Princeton University, 2010.</p>
+        <p><a href="https://wordnet.princeton.edu/citing-wordnet" target="_blank" rel="noopener">WordNet citation guidance</a></p>
+      </section>
+    </aside>
+
+    <section class="panel results">
+      <div class="result-head">
+        <div>
+          <h2 id="resultTitle">Ready</h2>
+          <p id="resultMeta">Search by headword instantly; full text searches meanings and explanations.</p>
+        </div>
+        <button id="exportCsv" class="secondary">Export visible CSV</button>
+      </div>
+      <div id="results" class="result-list"></div>
+    </section>
+
+    <aside class="panel detail" id="detail">
+      <div class="empty-detail">
+        <img src="assets/videha-cover.jpg" alt="">
+        <h2>Select an entry</h2>
+        <p>Definitions, Maithili meaning, English explanation, synonym, and antonym will appear here.</p>
+      </div>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

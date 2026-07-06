@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English-Maithili Thesaurus</title>
+<style>
+@page { size: A4; margin: 18mm 16mm 18mm 24mm; }
+@page :left { margin-left: 16mm; margin-right: 24mm; }
+@page :right { margin-left: 24mm; margin-right: 16mm; }
+body { font-family: "Noto Sans Devanagari", "Nirmala UI", Mangal, Arial, sans-serif; color:#111; background:#fff; line-height:1.35; }
+.cover { page-break-after: always; min-height: 240mm; display:flex; flex-direction:column; justify-content:center; text-align:center; border:1px solid #999; padding:18mm; }
+.cover h1 { font-family: Georgia, serif; font-size: 30pt; margin:0 0 12pt; }
+.cover h2 { font-size: 16pt; margin:0 0 18pt; color:#7a1e16; }
+.cover p { font-size: 11pt; margin:4pt 0; }
+.meta { margin-top:18pt; font-size:10pt; }
+#status { font-size: 12pt; padding: 20mm; }
+.entry { break-inside: avoid; page-break-inside: avoid; border-bottom: .3pt solid #bbb; padding: 4pt 0 5pt; }
+.hw { font-weight:700; font-size: 10.5pt; color:#7a1e16; }
+.meaning { font-size: 9.4pt; }
+.eng { font-size: 8.2pt; color:#444; }
+.source { font-size: 7.5pt; color:#666; }
+.letter { page-break-before: always; font-size:18pt; color:#7a1e16; border-bottom:1pt solid #7a1e16; padding-bottom:4pt; margin-top:0; }
+@media screen { body { max-width: 960px; margin: 24px auto; box-shadow:0 0 0 1px #ddd; padding:24px; } .cover { min-height:720px; } }
+</style>
+<script src="data/manifest.js"></script>
+</head>
+<body>
+<section class="cover">
+<h1>English-Maithili Thesaurus</h1>
+<h2>With safely integrated WordNet-matched Maithili equivalents</h2>
+<p>Lexicographer Name: Gajendra Thakur</p>
+<p>An ongoing Github Project of Videha First Maithili Fortnightly eJournal</p>
+<p>ISSN 2229-547X · www.videha.co.in</p>
+<p>Released under appropriate license</p>
+<div class="meta">A4 print layout: mirrored inner gutter margins for binding; open this file in a browser and print/save as PDF on A4.</div>
+</section>
+<div id="status">Loading thesaurus data…</div>
+<div id="book"></div>
+<script>
+const volume = "em";
+const manifest = window.VIDEHA_MANIFEST;
+const shards = Object.entries(manifest.shards).filter(([k,v]) => v.volume === volume).map(([k,v]) => [k,v.file]);
+function esc(s){return (s||"").toString().replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function loadScript(src){return new Promise((resolve,reject)=>{const old=window.VIDEHA_SHARD_PAYLOAD; window.VIDEHA_SHARD_PAYLOAD=null; const sc=document.createElement('script'); sc.src=src; sc.onload=()=>{const p=window.VIDEHA_SHARD_PAYLOAD; window.VIDEHA_SHARD_PAYLOAD=old||null; resolve(p&&p.records?p.records:[]);}; sc.onerror=reject; document.head.appendChild(sc);});}
+(async function(){
+ let html=[]; let last=''; let count=0;
+ for (const [name,file] of shards){
+   document.getElementById('status').textContent='Loading '+name+'…';
+   const records=await loadScript(file);
+   for (const r of records){
+     const letter=(r.h||'').trim().charAt(0)||'#';
+     if(letter!==last){html.push('<h2 class="letter">'+esc(letter)+'</h2>'); last=letter;}
+     html.push('<div class="entry"><div class="hw">'+esc(r.h)+'</div>'+(r.m?'<div class="meaning">'+esc(r.m)+'</div>':'')+(r.e?'<div class="eng">'+esc(r.e)+'</div>':'')+(r.source?'<div class="source">'+esc(r.source)+'</div>':'')+'</div>');
+     count++;
+   }
+ }
+ document.getElementById('status').remove();
+ document.getElementById('book').innerHTML=html.join('');
+ document.title += ' — '+count.toLocaleString()+' entries';
+})();
+</script>
+</body>
+</html>

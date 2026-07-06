@@ -1,0 +1,35 @@
+Videha WordNet Maithili Integration Report
+========================================
+
+Input counts
+- Existing English-Maithili rows: 273,188
+- Existing Maithili-English rows: 141,944
+- WordNet rows found: 147,264
+
+No-placeholder integration method
+- Built a bilingual map only from existing Videha English-Maithili data.
+- Used exact normalized English headword matches only.
+- Accepted only Devanagari Maithili meanings with no Roman letters after label cleanup.
+- Did not machine-fill unmatched WordNet entries.
+
+Results
+- WordNet rows with safe Maithili match: 38,266
+- WordNet rows still unmatched/no placeholder: 108,998
+- New English-Maithili WordNet rows inserted: 38,266
+- New Maithili-English reverse WordNet rows inserted: 133,662
+- New rows with blank Maithili field: 0
+- New rows with Roman leakage in Maithili field: 0
+
+Output structure
+- WordNet script parts: 2
+- Index script parts: 6
+- New English-Maithili WordNet shards: 26
+- New Maithili-English WordNet shards: 63
+- Largest file after processing: data/index_part_5.js = 41,319,467 bytes (39.41 MiB)
+
+A4 print-ready outputs
+- English_Maithili_Thesaurus_A4_Print.html
+- Maithili_English_Thesaurus_A4_Print.html
+
+Important limitation
+This run avoids hallucination. It does not invent 147,264 fresh gloss translations. It inserts and displays only the WordNet entries whose headwords could be safely matched to existing Videha Maithili equivalents. Unmatched entries remain searchable as WordNet English reference but do not receive fake Maithili text.
