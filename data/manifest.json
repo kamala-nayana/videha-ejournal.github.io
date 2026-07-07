@@ -1,0 +1,1476 @@
+{
+  "title": "Videha Combined Thesaurus + WordNet",
+  "volumes": {
+    "em": {
+      "name": "English-Maithili + WordNet",
+      "baseRows": 273188,
+      "wordNetRows": 147264,
+      "rows": 420452,
+      "chunks": [
+        {
+          "bucket": "0",
+          "file": "data/chunks/em/0_001.json",
+          "rows": 1,
+          "bytes": 7067
+        },
+        {
+          "bucket": "1",
+          "file": "data/chunks/em/1_001.json",
+          "rows": 119,
+          "bytes": 444515
+        },
+        {
+          "bucket": "2",
+          "file": "data/chunks/em/2_001.json",
+          "rows": 40,
+          "bytes": 189544
+        },
+        {
+          "bucket": "3",
+          "file": "data/chunks/em/3_001.json",
+          "rows": 37,
+          "bytes": 152847
+        },
+        {
+          "bucket": "4",
+          "file": "data/chunks/em/4_001.json",
+          "rows": 34,
+          "bytes": 123755
+        },
+        {
+          "bucket": "5",
+          "file": "data/chunks/em/5_001.json",
+          "rows": 20,
+          "bytes": 64833
+        },
+        {
+          "bucket": "6",
+          "file": "data/chunks/em/6_001.json",
+          "rows": 18,
+          "bytes": 54195
+        },
+        {
+          "bucket": "7",
+          "file": "data/chunks/em/7_001.json",
+          "rows": 15,
+          "bytes": 44086
+        },
+        {
+          "bucket": "8",
+          "file": "data/chunks/em/8_001.json",
+          "rows": 18,
+          "bytes": 47330
+        },
+        {
+          "bucket": "9",
+          "file": "data/chunks/em/9_001.json",
+          "rows": 16,
+          "bytes": 63709
+        },
+        {
+          "bucket": "a",
+          "file": "data/chunks/em/a_001.json",
+          "rows": 5000,
+          "bytes": 2504485
+        },
+        {
+          "bucket": "a",
+          "file": "data/chunks/em/a_002.json",
+          "rows": 5000,
+          "bytes": 2084313
+        },
+        {
+          "bucket": "a",
+          "file": "data/chunks/em/a_003.json",
+          "rows": 5000,
+          "bytes": 2091098
+        },
+        {
+          "bucket": "a",
+          "file": "data/chunks/em/a_004.json",
+          "rows": 5000,
+          "bytes": 2202827
+        },
+        {
+          "bucket": "a",
+          "file": "data/chunks/em/a_005.json",
+          "rows": 5000,
+          "bytes": 2177108
+        },
+        {
+          "bucket": "a",
+          "file": "data/chunks/em/a_006.json",
+          "rows": 5000,
+          "bytes": 26663309
+        },
+        {
+          "bucket": "a",
+          "file": "data/chunks/em/a_007.json",
+          "rows": 5000,
+          "bytes": 42456738
+        },
+        {
+          "bucket": "a",
+          "file": "data/chunks/em/a_008.json",
+          "rows": 2301,
+          "bytes": 22086299
+        },
+        {
+          "bucket": "b",
+          "file": "data/chunks/em/b_001.json",
+          "rows": 5000,
+          "bytes": 1975824
+        },
+        {
+          "bucket": "b",
+          "file": "data/chunks/em/b_002.json",
+          "rows": 5000,
+          "bytes": 1927117
+        },
+        {
+          "bucket": "b",
+          "file": "data/chunks/em/b_003.json",
+          "rows": 5000,
+          "bytes": 1892320
+        },
+        {
+          "bucket": "b",
+          "file": "data/chunks/em/b_004.json",
+          "rows": 5000,
+          "bytes": 42397218
+        },
+        {
+          "bucket": "b",
+          "file": "data/chunks/em/b_005.json",
+          "rows": 3689,
+          "bytes": 35310537
+        },
+        {
+          "bucket": "c",
+          "file": "data/chunks/em/c_001.json",
+          "rows": 5000,
+          "bytes": 2002337
+        },
+        {
+          "bucket": "c",
+          "file": "data/chunks/em/c_002.json",
+          "rows": 5000,
+          "bytes": 2034121
+        },
+        {
+          "bucket": "c",
+          "file": "data/chunks/em/c_003.json",
+          "rows": 5000,
+          "bytes": 2096239
+        },
+        {
+          "bucket": "c",
+          "file": "data/chunks/em/c_004.json",
+          "rows": 5000,
+          "bytes": 2114040
+        },
+        {
+          "bucket": "c",
+          "file": "data/chunks/em/c_005.json",
+          "rows": 5000,
+          "bytes": 11900642
+        },
+        {
+          "bucket": "c",
+          "file": "data/chunks/em/c_006.json",
+          "rows": 5000,
+          "bytes": 45211866
+        },
+        {
+          "bucket": "c",
+          "file": "data/chunks/em/c_007.json",
+          "rows": 5000,
+          "bytes": 53027956
+        },
+        {
+          "bucket": "c",
+          "file": "data/chunks/em/c_008.json",
+          "rows": 2934,
+          "bytes": 26223289
+        },
+        {
+          "bucket": "d",
+          "file": "data/chunks/em/d_001.json",
+          "rows": 5000,
+          "bytes": 2014231
+        },
+        {
+          "bucket": "d",
+          "file": "data/chunks/em/d_002.json",
+          "rows": 5000,
+          "bytes": 2040637
+        },
+        {
+          "bucket": "d",
+          "file": "data/chunks/em/d_003.json",
+          "rows": 5000,
+          "bytes": 4141173
+        },
+        {
+          "bucket": "d",
+          "file": "data/chunks/em/d_004.json",
+          "rows": 5000,
+          "bytes": 49075727
+        },
+        {
+          "bucket": "d",
+          "file": "data/chunks/em/d_005.json",
+          "rows": 1609,
+          "bytes": 14314205
+        },
+        {
+          "bucket": "e",
+          "file": "data/chunks/em/e_001.json",
+          "rows": 5000,
+          "bytes": 2093010
+        },
+        {
+          "bucket": "e",
+          "file": "data/chunks/em/e_002.json",
+          "rows": 5000,
+          "bytes": 2336539
+        },
+        {
+          "bucket": "e",
+          "file": "data/chunks/em/e_003.json",
+          "rows": 5000,
+          "bytes": 45139480
+        },
+        {
+          "bucket": "e",
+          "file": "data/chunks/em/e_004.json",
+          "rows": 188,
+          "bytes": 1433441
+        },
+        {
+          "bucket": "f",
+          "file": "data/chunks/em/f_001.json",
+          "rows": 5000,
+          "bytes": 2057486
+        },
+        {
+          "bucket": "f",
+          "file": "data/chunks/em/f_002.json",
+          "rows": 5000,
+          "bytes": 2264679
+        },
+        {
+          "bucket": "f",
+          "file": "data/chunks/em/f_003.json",
+          "rows": 5000,
+          "bytes": 11551416
+        },
+        {
+          "bucket": "f",
+          "file": "data/chunks/em/f_004.json",
+          "rows": 5000,
+          "bytes": 46560127
+        },
+        {
+          "bucket": "f",
+          "file": "data/chunks/em/f_005.json",
+          "rows": 791,
+          "bytes": 7428592
+        },
+        {
+          "bucket": "g",
+          "file": "data/chunks/em/g_001.json",
+          "rows": 5000,
+          "bytes": 2057821
+        },
+        {
+          "bucket": "g",
+          "file": "data/chunks/em/g_002.json",
+          "rows": 5000,
+          "bytes": 20814514
+        },
+        {
+          "bucket": "g",
+          "file": "data/chunks/em/g_003.json",
+          "rows": 5000,
+          "bytes": 40469049
+        },
+        {
+          "bucket": "g",
+          "file": "data/chunks/em/g_004.json",
+          "rows": 1180,
+          "bytes": 9982895
+        },
+        {
+          "bucket": "h",
+          "file": "data/chunks/em/h_001.json",
+          "rows": 5000,
+          "bytes": 2079101
+        },
+        {
+          "bucket": "h",
+          "file": "data/chunks/em/h_002.json",
+          "rows": 5000,
+          "bytes": 10522222
+        },
+        {
+          "bucket": "h",
+          "file": "data/chunks/em/h_003.json",
+          "rows": 4681,
+          "bytes": 39306986
+        },
+        {
+          "bucket": "i",
+          "file": "data/chunks/em/i_001.json",
+          "rows": 5000,
+          "bytes": 2038469
+        },
+        {
+          "bucket": "i",
+          "file": "data/chunks/em/i_002.json",
+          "rows": 5000,
+          "bytes": 2097997
+        },
+        {
+          "bucket": "i",
+          "file": "data/chunks/em/i_003.json",
+          "rows": 4727,
+          "bytes": 40258879
+        },
+        {
+          "bucket": "j",
+          "file": "data/chunks/em/j_001.json",
+          "rows": 3676,
+          "bytes": 16813546
+        },
+        {
+          "bucket": "k",
+          "file": "data/chunks/em/k_001.json",
+          "rows": 3245,
+          "bytes": 13574301
+        },
+        {
+          "bucket": "l",
+          "file": "data/chunks/em/l_001.json",
+          "rows": 5000,
+          "bytes": 2107054
+        },
+        {
+          "bucket": "l",
+          "file": "data/chunks/em/l_002.json",
+          "rows": 5000,
+          "bytes": 8145039
+        },
+        {
+          "bucket": "l",
+          "file": "data/chunks/em/l_003.json",
+          "rows": 4760,
+          "bytes": 40359979
+        },
+        {
+          "bucket": "m",
+          "file": "data/chunks/em/m_001.json",
+          "rows": 5000,
+          "bytes": 2148891
+        },
+        {
+          "bucket": "m",
+          "file": "data/chunks/em/m_002.json",
+          "rows": 5000,
+          "bytes": 2251679
+        },
+        {
+          "bucket": "m",
+          "file": "data/chunks/em/m_003.json",
+          "rows": 5000,
+          "bytes": 9946395
+        },
+        {
+          "bucket": "m",
+          "file": "data/chunks/em/m_004.json",
+          "rows": 5000,
+          "bytes": 46686425
+        },
+        {
+          "bucket": "m",
+          "file": "data/chunks/em/m_005.json",
+          "rows": 2188,
+          "bytes": 19208035
+        },
+        {
+          "bucket": "n",
+          "file": "data/chunks/em/n_001.json",
+          "rows": 5000,
+          "bytes": 3633367
+        },
+        {
+          "bucket": "n",
+          "file": "data/chunks/em/n_002.json",
+          "rows": 3293,
+          "bytes": 25881749
+        },
+        {
+          "bucket": "o",
+          "file": "data/chunks/em/o_001.json",
+          "rows": 5000,
+          "bytes": 1993478
+        },
+        {
+          "bucket": "o",
+          "file": "data/chunks/em/o_002.json",
+          "rows": 4865,
+          "bytes": 31285077
+        },
+        {
+          "bucket": "p",
+          "file": "data/chunks/em/p_001.json",
+          "rows": 5000,
+          "bytes": 2071328
+        },
+        {
+          "bucket": "p",
+          "file": "data/chunks/em/p_002.json",
+          "rows": 5000,
+          "bytes": 2112807
+        },
+        {
+          "bucket": "p",
+          "file": "data/chunks/em/p_003.json",
+          "rows": 5000,
+          "bytes": 2058867
+        },
+        {
+          "bucket": "p",
+          "file": "data/chunks/em/p_004.json",
+          "rows": 5000,
+          "bytes": 2086334
+        },
+        {
+          "bucket": "p",
+          "file": "data/chunks/em/p_005.json",
+          "rows": 5000,
+          "bytes": 38463038
+        },
+        {
+          "bucket": "p",
+          "file": "data/chunks/em/p_006.json",
+          "rows": 5000,
+          "bytes": 47661601
+        },
+        {
+          "bucket": "p",
+          "file": "data/chunks/em/p_007.json",
+          "rows": 1989,
+          "bytes": 17699443
+        },
+        {
+          "bucket": "q",
+          "file": "data/chunks/em/q_001.json",
+          "rows": 1887,
+          "bytes": 5496273
+        },
+        {
+          "bucket": "r",
+          "file": "data/chunks/em/r_001.json",
+          "rows": 5000,
+          "bytes": 2009225
+        },
+        {
+          "bucket": "r",
+          "file": "data/chunks/em/r_002.json",
+          "rows": 5000,
+          "bytes": 1961401
+        },
+        {
+          "bucket": "r",
+          "file": "data/chunks/em/r_003.json",
+          "rows": 5000,
+          "bytes": 7949479
+        },
+        {
+          "bucket": "r",
+          "file": "data/chunks/em/r_004.json",
+          "rows": 5000,
+          "bytes": 50382937
+        },
+        {
+          "bucket": "r",
+          "file": "data/chunks/em/r_005.json",
+          "rows": 441,
+          "bytes": 4512615
+        },
+        {
+          "bucket": "s",
+          "file": "data/chunks/em/s_001.json",
+          "rows": 5000,
+          "bytes": 2101625
+        },
+        {
+          "bucket": "s",
+          "file": "data/chunks/em/s_002.json",
+          "rows": 5000,
+          "bytes": 2095120
+        },
+        {
+          "bucket": "s",
+          "file": "data/chunks/em/s_003.json",
+          "rows": 5000,
+          "bytes": 2039755
+        },
+        {
+          "bucket": "s",
+          "file": "data/chunks/em/s_004.json",
+          "rows": 5000,
+          "bytes": 2111708
+        },
+        {
+          "bucket": "s",
+          "file": "data/chunks/em/s_005.json",
+          "rows": 5000,
+          "bytes": 2102842
+        },
+        {
+          "bucket": "s",
+          "file": "data/chunks/em/s_006.json",
+          "rows": 5000,
+          "bytes": 2044446
+        },
+        {
+          "bucket": "s",
+          "file": "data/chunks/em/s_007.json",
+          "rows": 5000,
+          "bytes": 31690587
+        },
+        {
+          "bucket": "s",
+          "file": "data/chunks/em/s_008.json",
+          "rows": 5000,
+          "bytes": 45544386
+        },
+        {
+          "bucket": "s",
+          "file": "data/chunks/em/s_009.json",
+          "rows": 5000,
+          "bytes": 49011241
+        },
+        {
+          "bucket": "s",
+          "file": "data/chunks/em/s_010.json",
+          "rows": 2241,
+          "bytes": 21948577
+        },
+        {
+          "bucket": "t",
+          "file": "data/chunks/em/t_001.json",
+          "rows": 5000,
+          "bytes": 2067880
+        },
+        {
+          "bucket": "t",
+          "file": "data/chunks/em/t_002.json",
+          "rows": 5000,
+          "bytes": 1944298
+        },
+        {
+          "bucket": "t",
+          "file": "data/chunks/em/t_003.json",
+          "rows": 5000,
+          "bytes": 2075608
+        },
+        {
+          "bucket": "t",
+          "file": "data/chunks/em/t_004.json",
+          "rows": 5000,
+          "bytes": 27180458
+        },
+        {
+          "bucket": "t",
+          "file": "data/chunks/em/t_005.json",
+          "rows": 4525,
+          "bytes": 40608002
+        },
+        {
+          "bucket": "u",
+          "file": "data/chunks/em/u_001.json",
+          "rows": 5000,
+          "bytes": 8626158
+        },
+        {
+          "bucket": "u",
+          "file": "data/chunks/em/u_002.json",
+          "rows": 2299,
+          "bytes": 16953754
+        },
+        {
+          "bucket": "v",
+          "file": "data/chunks/em/v_001.json",
+          "rows": 5000,
+          "bytes": 2133334
+        },
+        {
+          "bucket": "v",
+          "file": "data/chunks/em/v_002.json",
+          "rows": 3599,
+          "bytes": 20860495
+        },
+        {
+          "bucket": "w",
+          "file": "data/chunks/em/w_001.json",
+          "rows": 5000,
+          "bytes": 2139200
+        },
+        {
+          "bucket": "w",
+          "file": "data/chunks/em/w_002.json",
+          "rows": 5000,
+          "bytes": 18886079
+        },
+        {
+          "bucket": "w",
+          "file": "data/chunks/em/w_003.json",
+          "rows": 1851,
+          "bytes": 17113097
+        },
+        {
+          "bucket": "x",
+          "file": "data/chunks/em/x_001.json",
+          "rows": 260,
+          "bytes": 1174459
+        },
+        {
+          "bucket": "y",
+          "file": "data/chunks/em/y_001.json",
+          "rows": 1257,
+          "bytes": 4330148
+        },
+        {
+          "bucket": "z",
+          "file": "data/chunks/em/z_001.json",
+          "rows": 658,
+          "bytes": 2942338
+        }
+      ]
+    },
+    "me": {
+      "name": "Maithili-English + WordNet",
+      "baseRows": 141875,
+      "wordNetRows": 147264,
+      "rows": 289139,
+      "chunks": [
+        {
+          "bucket": "1",
+          "file": "data/chunks/me/1_001.json",
+          "rows": 44,
+          "bytes": 160074
+        },
+        {
+          "bucket": "2",
+          "file": "data/chunks/me/2_001.json",
+          "rows": 1,
+          "bytes": 3888
+        },
+        {
+          "bucket": "4",
+          "file": "data/chunks/me/4_001.json",
+          "rows": 1,
+          "bytes": 5873
+        },
+        {
+          "bucket": "5",
+          "file": "data/chunks/me/5_001.json",
+          "rows": 2,
+          "bytes": 7445
+        },
+        {
+          "bucket": "a",
+          "file": "data/chunks/me/a_001.json",
+          "rows": 267,
+          "bytes": 1734406
+        },
+        {
+          "bucket": "b",
+          "file": "data/chunks/me/b_001.json",
+          "rows": 262,
+          "bytes": 1936603
+        },
+        {
+          "bucket": "c",
+          "file": "data/chunks/me/c_001.json",
+          "rows": 594,
+          "bytes": 3598614
+        },
+        {
+          "bucket": "d",
+          "file": "data/chunks/me/d_001.json",
+          "rows": 446,
+          "bytes": 2732729
+        },
+        {
+          "bucket": "e",
+          "file": "data/chunks/me/e_001.json",
+          "rows": 283,
+          "bytes": 1770128
+        },
+        {
+          "bucket": "f",
+          "file": "data/chunks/me/f_001.json",
+          "rows": 271,
+          "bytes": 1710601
+        },
+        {
+          "bucket": "g",
+          "file": "data/chunks/me/g_001.json",
+          "rows": 259,
+          "bytes": 2213839
+        },
+        {
+          "bucket": "h",
+          "file": "data/chunks/me/h_001.json",
+          "rows": 243,
+          "bytes": 1559108
+        },
+        {
+          "bucket": "i",
+          "file": "data/chunks/me/i_001.json",
+          "rows": 215,
+          "bytes": 1445074
+        },
+        {
+          "bucket": "j",
+          "file": "data/chunks/me/j_001.json",
+          "rows": 86,
+          "bytes": 566005
+        },
+        {
+          "bucket": "k",
+          "file": "data/chunks/me/k_001.json",
+          "rows": 87,
+          "bytes": 508688
+        },
+        {
+          "bucket": "l",
+          "file": "data/chunks/me/l_001.json",
+          "rows": 284,
+          "bytes": 1856209
+        },
+        {
+          "bucket": "m",
+          "file": "data/chunks/me/m_001.json",
+          "rows": 419,
+          "bytes": 2962424
+        },
+        {
+          "bucket": "n",
+          "file": "data/chunks/me/n_001.json",
+          "rows": 176,
+          "bytes": 1125224
+        },
+        {
+          "bucket": "o",
+          "file": "data/chunks/me/o_001.json",
+          "rows": 141,
+          "bytes": 749365
+        },
+        {
+          "bucket": "p",
+          "file": "data/chunks/me/p_001.json",
+          "rows": 629,
+          "bytes": 4053238
+        },
+        {
+          "bucket": "q",
+          "file": "data/chunks/me/q_001.json",
+          "rows": 41,
+          "bytes": 292984
+        },
+        {
+          "bucket": "r",
+          "file": "data/chunks/me/r_001.json",
+          "rows": 358,
+          "bytes": 2156732
+        },
+        {
+          "bucket": "s",
+          "file": "data/chunks/me/s_001.json",
+          "rows": 819,
+          "bytes": 5557137
+        },
+        {
+          "bucket": "t",
+          "file": "data/chunks/me/t_001.json",
+          "rows": 372,
+          "bytes": 2407566
+        },
+        {
+          "bucket": "u",
+          "file": "data/chunks/me/u_001.json",
+          "rows": 85,
+          "bytes": 498710
+        },
+        {
+          "bucket": "v",
+          "file": "data/chunks/me/v_001.json",
+          "rows": 106,
+          "bytes": 629905
+        },
+        {
+          "bucket": "w",
+          "file": "data/chunks/me/w_001.json",
+          "rows": 248,
+          "bytes": 1684433
+        },
+        {
+          "bucket": "x",
+          "file": "data/chunks/me/x_001.json",
+          "rows": 18,
+          "bytes": 118326
+        },
+        {
+          "bucket": "y",
+          "file": "data/chunks/me/y_001.json",
+          "rows": 30,
+          "bytes": 179696
+        },
+        {
+          "bucket": "z",
+          "file": "data/chunks/me/z_001.json",
+          "rows": 8,
+          "bytes": 62979
+        },
+        {
+          "bucket": "अ",
+          "file": "data/chunks/me/अ_001.json",
+          "rows": 5000,
+          "bytes": 2194536
+        },
+        {
+          "bucket": "अ",
+          "file": "data/chunks/me/अ_002.json",
+          "rows": 5000,
+          "bytes": 2157010
+        },
+        {
+          "bucket": "अ",
+          "file": "data/chunks/me/अ_003.json",
+          "rows": 5000,
+          "bytes": 36099228
+        },
+        {
+          "bucket": "अ",
+          "file": "data/chunks/me/अ_004.json",
+          "rows": 3078,
+          "bytes": 26305000
+        },
+        {
+          "bucket": "आ",
+          "file": "data/chunks/me/आ_001.json",
+          "rows": 5000,
+          "bytes": 15384028
+        },
+        {
+          "bucket": "आ",
+          "file": "data/chunks/me/आ_002.json",
+          "rows": 1342,
+          "bytes": 13205746
+        },
+        {
+          "bucket": "इ",
+          "file": "data/chunks/me/इ_001.json",
+          "rows": 1411,
+          "bytes": 7732541
+        },
+        {
+          "bucket": "ई",
+          "file": "data/chunks/me/ई_001.json",
+          "rows": 336,
+          "bytes": 1463877
+        },
+        {
+          "bucket": "उ",
+          "file": "data/chunks/me/उ_001.json",
+          "rows": 5000,
+          "bytes": 19323749
+        },
+        {
+          "bucket": "उ",
+          "file": "data/chunks/me/उ_002.json",
+          "rows": 1119,
+          "bytes": 10956933
+        },
+        {
+          "bucket": "ऊ",
+          "file": "data/chunks/me/ऊ_001.json",
+          "rows": 363,
+          "bytes": 1820295
+        },
+        {
+          "bucket": "ऋ",
+          "file": "data/chunks/me/ऋ_001.json",
+          "rows": 78,
+          "bytes": 292540
+        },
+        {
+          "bucket": "ए",
+          "file": "data/chunks/me/ए_001.json",
+          "rows": 3826,
+          "bytes": 23308675
+        },
+        {
+          "bucket": "ऐ",
+          "file": "data/chunks/me/ऐ_001.json",
+          "rows": 295,
+          "bytes": 1161474
+        },
+        {
+          "bucket": "ऑ",
+          "file": "data/chunks/me/ऑ_001.json",
+          "rows": 177,
+          "bytes": 1089837
+        },
+        {
+          "bucket": "ओ",
+          "file": "data/chunks/me/ओ_001.json",
+          "rows": 1165,
+          "bytes": 5946419
+        },
+        {
+          "bucket": "औ",
+          "file": "data/chunks/me/औ_001.json",
+          "rows": 810,
+          "bytes": 4514612
+        },
+        {
+          "bucket": "क",
+          "file": "data/chunks/me/क_001.json",
+          "rows": 5000,
+          "bytes": 2251875
+        },
+        {
+          "bucket": "क",
+          "file": "data/chunks/me/क_002.json",
+          "rows": 5000,
+          "bytes": 2270309
+        },
+        {
+          "bucket": "क",
+          "file": "data/chunks/me/क_003.json",
+          "rows": 5000,
+          "bytes": 38485299
+        },
+        {
+          "bucket": "क",
+          "file": "data/chunks/me/क_004.json",
+          "rows": 5000,
+          "bytes": 46590404
+        },
+        {
+          "bucket": "क",
+          "file": "data/chunks/me/क_005.json",
+          "rows": 1416,
+          "bytes": 13229123
+        },
+        {
+          "bucket": "ख",
+          "file": "data/chunks/me/ख_001.json",
+          "rows": 5000,
+          "bytes": 17207505
+        },
+        {
+          "bucket": "ख",
+          "file": "data/chunks/me/ख_002.json",
+          "rows": 115,
+          "bytes": 1517712
+        },
+        {
+          "bucket": "ग",
+          "file": "data/chunks/me/ग_001.json",
+          "rows": 5000,
+          "bytes": 2337288
+        },
+        {
+          "bucket": "ग",
+          "file": "data/chunks/me/ग_002.json",
+          "rows": 5000,
+          "bytes": 38599235
+        },
+        {
+          "bucket": "ग",
+          "file": "data/chunks/me/ग_003.json",
+          "rows": 4905,
+          "bytes": 41913421
+        },
+        {
+          "bucket": "घ",
+          "file": "data/chunks/me/घ_001.json",
+          "rows": 3285,
+          "bytes": 15567950
+        },
+        {
+          "bucket": "ङ",
+          "file": "data/chunks/me/ङ_001.json",
+          "rows": 67,
+          "bytes": 545520
+        },
+        {
+          "bucket": "च",
+          "file": "data/chunks/me/च_001.json",
+          "rows": 5000,
+          "bytes": 2251755
+        },
+        {
+          "bucket": "च",
+          "file": "data/chunks/me/च_002.json",
+          "rows": 4449,
+          "bytes": 40316973
+        },
+        {
+          "bucket": "छ",
+          "file": "data/chunks/me/छ_001.json",
+          "rows": 3888,
+          "bytes": 18119440
+        },
+        {
+          "bucket": "ज",
+          "file": "data/chunks/me/ज_001.json",
+          "rows": 5000,
+          "bytes": 14471544
+        },
+        {
+          "bucket": "ज",
+          "file": "data/chunks/me/ज_002.json",
+          "rows": 4868,
+          "bytes": 42564925
+        },
+        {
+          "bucket": "झ",
+          "file": "data/chunks/me/झ_001.json",
+          "rows": 2343,
+          "bytes": 9605776
+        },
+        {
+          "bucket": "ञ",
+          "file": "data/chunks/me/ञ_001.json",
+          "rows": 9,
+          "bytes": 3109
+        },
+        {
+          "bucket": "ट",
+          "file": "data/chunks/me/ट_001.json",
+          "rows": 2610,
+          "bytes": 12637110
+        },
+        {
+          "bucket": "ठ",
+          "file": "data/chunks/me/ठ_001.json",
+          "rows": 1049,
+          "bytes": 4808664
+        },
+        {
+          "bucket": "ड",
+          "file": "data/chunks/me/ड_001.json",
+          "rows": 2225,
+          "bytes": 9400812
+        },
+        {
+          "bucket": "ढ",
+          "file": "data/chunks/me/ढ_001.json",
+          "rows": 1057,
+          "bytes": 3667545
+        },
+        {
+          "bucket": "ण",
+          "file": "data/chunks/me/ण_001.json",
+          "rows": 135,
+          "bytes": 1435519
+        },
+        {
+          "bucket": "त",
+          "file": "data/chunks/me/त_001.json",
+          "rows": 5000,
+          "bytes": 10710384
+        },
+        {
+          "bucket": "त",
+          "file": "data/chunks/me/त_002.json",
+          "rows": 4178,
+          "bytes": 32523389
+        },
+        {
+          "bucket": "थ",
+          "file": "data/chunks/me/थ_001.json",
+          "rows": 938,
+          "bytes": 4722763
+        },
+        {
+          "bucket": "द",
+          "file": "data/chunks/me/द_001.json",
+          "rows": 5000,
+          "bytes": 4422065
+        },
+        {
+          "bucket": "द",
+          "file": "data/chunks/me/द_002.json",
+          "rows": 3788,
+          "bytes": 37258200
+        },
+        {
+          "bucket": "ध",
+          "file": "data/chunks/me/ध_001.json",
+          "rows": 3301,
+          "bytes": 14974772
+        },
+        {
+          "bucket": "न",
+          "file": "data/chunks/me/न_001.json",
+          "rows": 5000,
+          "bytes": 5870729
+        },
+        {
+          "bucket": "न",
+          "file": "data/chunks/me/न_002.json",
+          "rows": 5000,
+          "bytes": 45987031
+        },
+        {
+          "bucket": "न",
+          "file": "data/chunks/me/न_003.json",
+          "rows": 70,
+          "bytes": 523459
+        },
+        {
+          "bucket": "प",
+          "file": "data/chunks/me/प_001.json",
+          "rows": 5000,
+          "bytes": 2280615
+        },
+        {
+          "bucket": "प",
+          "file": "data/chunks/me/प_002.json",
+          "rows": 5000,
+          "bytes": 2330017
+        },
+        {
+          "bucket": "प",
+          "file": "data/chunks/me/प_003.json",
+          "rows": 5000,
+          "bytes": 27686871
+        },
+        {
+          "bucket": "प",
+          "file": "data/chunks/me/प_004.json",
+          "rows": 5000,
+          "bytes": 44056097
+        },
+        {
+          "bucket": "प",
+          "file": "data/chunks/me/प_005.json",
+          "rows": 2780,
+          "bytes": 25432880
+        },
+        {
+          "bucket": "फ",
+          "file": "data/chunks/me/फ_001.json",
+          "rows": 5000,
+          "bytes": 22796115
+        },
+        {
+          "bucket": "फ",
+          "file": "data/chunks/me/फ_002.json",
+          "rows": 817,
+          "bytes": 6874742
+        },
+        {
+          "bucket": "ब",
+          "file": "data/chunks/me/ब_001.json",
+          "rows": 5000,
+          "bytes": 2226089
+        },
+        {
+          "bucket": "ब",
+          "file": "data/chunks/me/ब_002.json",
+          "rows": 5000,
+          "bytes": 6911064
+        },
+        {
+          "bucket": "ब",
+          "file": "data/chunks/me/ब_003.json",
+          "rows": 5000,
+          "bytes": 50849971
+        },
+        {
+          "bucket": "ब",
+          "file": "data/chunks/me/ब_004.json",
+          "rows": 1374,
+          "bytes": 13550470
+        },
+        {
+          "bucket": "भ",
+          "file": "data/chunks/me/भ_001.json",
+          "rows": 5000,
+          "bytes": 12015939
+        },
+        {
+          "bucket": "भ",
+          "file": "data/chunks/me/भ_002.json",
+          "rows": 748,
+          "bytes": 8459907
+        },
+        {
+          "bucket": "म",
+          "file": "data/chunks/me/म_001.json",
+          "rows": 5000,
+          "bytes": 2227877
+        },
+        {
+          "bucket": "म",
+          "file": "data/chunks/me/म_002.json",
+          "rows": 5000,
+          "bytes": 19063632
+        },
+        {
+          "bucket": "म",
+          "file": "data/chunks/me/म_003.json",
+          "rows": 4581,
+          "bytes": 39041085
+        },
+        {
+          "bucket": "य",
+          "file": "data/chunks/me/य_001.json",
+          "rows": 2401,
+          "bytes": 11233301
+        },
+        {
+          "bucket": "र",
+          "file": "data/chunks/me/र_001.json",
+          "rows": 5000,
+          "bytes": 20564849
+        },
+        {
+          "bucket": "र",
+          "file": "data/chunks/me/र_002.json",
+          "rows": 3272,
+          "bytes": 32513223
+        },
+        {
+          "bucket": "ल",
+          "file": "data/chunks/me/ल_001.json",
+          "rows": 5000,
+          "bytes": 14338849
+        },
+        {
+          "bucket": "ल",
+          "file": "data/chunks/me/ल_002.json",
+          "rows": 2120,
+          "bytes": 20889662
+        },
+        {
+          "bucket": "व",
+          "file": "data/chunks/me/व_001.json",
+          "rows": 5000,
+          "bytes": 12214789
+        },
+        {
+          "bucket": "व",
+          "file": "data/chunks/me/व_002.json",
+          "rows": 5000,
+          "bytes": 44110315
+        },
+        {
+          "bucket": "व",
+          "file": "data/chunks/me/व_003.json",
+          "rows": 2439,
+          "bytes": 21117876
+        },
+        {
+          "bucket": "श",
+          "file": "data/chunks/me/श_001.json",
+          "rows": 5000,
+          "bytes": 27683643
+        },
+        {
+          "bucket": "श",
+          "file": "data/chunks/me/श_002.json",
+          "rows": 388,
+          "bytes": 3572998
+        },
+        {
+          "bucket": "ष",
+          "file": "data/chunks/me/ष_001.json",
+          "rows": 148,
+          "bytes": 484689
+        },
+        {
+          "bucket": "स",
+          "file": "data/chunks/me/स_001.json",
+          "rows": 5000,
+          "bytes": 2144442
+        },
+        {
+          "bucket": "स",
+          "file": "data/chunks/me/स_002.json",
+          "rows": 5000,
+          "bytes": 2227129
+        },
+        {
+          "bucket": "स",
+          "file": "data/chunks/me/स_003.json",
+          "rows": 5000,
+          "bytes": 16802924
+        },
+        {
+          "bucket": "स",
+          "file": "data/chunks/me/स_004.json",
+          "rows": 5000,
+          "bytes": 47224776
+        },
+        {
+          "bucket": "स",
+          "file": "data/chunks/me/स_005.json",
+          "rows": 5000,
+          "bytes": 43379499
+        },
+        {
+          "bucket": "स",
+          "file": "data/chunks/me/स_006.json",
+          "rows": 1116,
+          "bytes": 9206180
+        },
+        {
+          "bucket": "ह",
+          "file": "data/chunks/me/ह_001.json",
+          "rows": 5000,
+          "bytes": 17429825
+        },
+        {
+          "bucket": "ह",
+          "file": "data/chunks/me/ह_002.json",
+          "rows": 945,
+          "bytes": 9666513
+        },
+        {
+          "bucket": "ा",
+          "file": "data/chunks/me/ा_001.json",
+          "rows": 1,
+          "bytes": 3534
+        },
+        {
+          "bucket": "ि",
+          "file": "data/chunks/me/ि_001.json",
+          "rows": 4,
+          "bytes": 21047
+        },
+        {
+          "bucket": "ु",
+          "file": "data/chunks/me/ु_001.json",
+          "rows": 1,
+          "bytes": 11952
+        },
+        {
+          "bucket": "ू",
+          "file": "data/chunks/me/ू_001.json",
+          "rows": 2,
+          "bytes": 34502
+        },
+        {
+          "bucket": "े",
+          "file": "data/chunks/me/े_001.json",
+          "rows": 4,
+          "bytes": 21757
+        },
+        {
+          "bucket": "ो",
+          "file": "data/chunks/me/ो_001.json",
+          "rows": 4,
+          "bytes": 30928
+        },
+        {
+          "bucket": "्",
+          "file": "data/chunks/me/्_001.json",
+          "rows": 8,
+          "bytes": 205607
+        },
+        {
+          "bucket": "ड़",
+          "file": "data/chunks/me/ड़_001.json",
+          "rows": 45,
+          "bytes": 534264
+        },
+        {
+          "bucket": "ढ़",
+          "file": "data/chunks/me/ढ़_001.json",
+          "rows": 123,
+          "bytes": 1169467
+        },
+        {
+          "bucket": "।",
+          "file": "data/chunks/me/।_001.json",
+          "rows": 24,
+          "bytes": 242115
+        },
+        {
+          "bucket": "०",
+          "file": "data/chunks/me/०_001.json",
+          "rows": 2,
+          "bytes": 12046
+        },
+        {
+          "bucket": "१",
+          "file": "data/chunks/me/१_001.json",
+          "rows": 117,
+          "bytes": 392980
+        },
+        {
+          "bucket": "२",
+          "file": "data/chunks/me/२_001.json",
+          "rows": 32,
+          "bytes": 119643
+        },
+        {
+          "bucket": "३",
+          "file": "data/chunks/me/३_001.json",
+          "rows": 32,
+          "bytes": 87355
+        },
+        {
+          "bucket": "४",
+          "file": "data/chunks/me/४_001.json",
+          "rows": 29,
+          "bytes": 85643
+        },
+        {
+          "bucket": "५",
+          "file": "data/chunks/me/५_001.json",
+          "rows": 18,
+          "bytes": 62364
+        },
+        {
+          "bucket": "६",
+          "file": "data/chunks/me/६_001.json",
+          "rows": 19,
+          "bytes": 56944
+        },
+        {
+          "bucket": "७",
+          "file": "data/chunks/me/७_001.json",
+          "rows": 15,
+          "bytes": 46384
+        },
+        {
+          "bucket": "८",
+          "file": "data/chunks/me/८_001.json",
+          "rows": 22,
+          "bytes": 106999
+        },
+        {
+          "bucket": "९",
+          "file": "data/chunks/me/९_001.json",
+          "rows": 17,
+          "bytes": 42517
+        }
+      ]
+    }
+  },
+  "citation": "Princeton University. \"About WordNet.\" WordNet. Princeton University, 2010.",
+  "citationUrl": "https://wordnet.princeton.edu/",
+  "note": "Original Videha bilingual base rows plus rebuilt WordNet 2.1 full sense/relation extraction with generated Maithili layer beta."
+}
