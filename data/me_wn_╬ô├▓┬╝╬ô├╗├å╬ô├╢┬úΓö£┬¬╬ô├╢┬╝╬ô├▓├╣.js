@@ -1,1 +1,0 @@
-window.VIDEHA_SHARD_PAYLOAD={"shard":"me_wn_९","records":[{"id":417410,"v":"me","sec":"WordNet","h":"९० डिग्री सँ कम कऽ कोण","m":"वर्डनेट स्रोतसँ मिलान कएल मैथिली-समकक्ष।","e":"acute angle: an angle less than 90 degrees but more than 0 degrees","syn":"","ant":"","source":"WordNet 2.1, Princeton University; reverse entry generated from safe Videha bilingual match"}]};
