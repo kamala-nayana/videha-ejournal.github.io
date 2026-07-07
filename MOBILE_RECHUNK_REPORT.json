@@ -1,0 +1,12 @@
+{
+  "em": {
+    "rows": 420452,
+    "chunks": 1199,
+    "maxChunkMB": 3.34
+  },
+  "me": {
+    "rows": 289139,
+    "chunks": 2522,
+    "maxChunkMB": 3.34
+  }
+}
