@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="mai">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>विदेह | Combined Thesaurus + WordNet</title>
+  <meta name="description" content="Videha Combined Thesaurus + WordNet — English-Maithili and Maithili-English searchable thesaurus with Devanagari, Roman, IAST, ISO 15919 and Harvard-Kyoto search support.">
+
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Devanagari:wght@300;400;500;600&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tirhuta&display=swap" rel="stylesheet">
+
+  <!-- Videha house stylesheet first; local app stylesheet second for result/table rules. -->
+  <link rel="stylesheet" href="assets/css/videha.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <style id="videha-combined-thesaurus-skin">
+    :root{
+      --vd-cream:#FAF6EE; --vd-paper:#FFFCF6; --vd-field:#EFE9DC;
+      --vd-rule:#D8CFC0; --vd-rule-soft:#E7DECB;
+      --vd-crimson:#8B1A1A; --vd-crimson-dark:#6B1212;
+      --vd-gold:#C77B2C; --vd-indigo:#1F2A44;
+      --vd-ink:#23201B; --vd-ink-soft:#544D42;
+    }
+    body{
+      margin:0;
+      background:var(--vd-cream);
+      color:var(--vd-ink);
+      font-family:'Noto Serif Devanagari','Libre Baskerville',Georgia,serif;
+      line-height:1.9;
+    }
+    .videha-skip{
+      position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+    }
+    .videha-skip:focus{
+      left:12px;top:12px;width:auto;height:auto;z-index:9999;
+      background:#fff;color:var(--vd-crimson);padding:8px 12px;border:2px solid var(--vd-crimson);
+    }
+    .videha-masthead-title{
+      font-family:'Noto Serif Devanagari','Playfair Display',serif;
+      font-size:clamp(48px,9vw,96px);
+      letter-spacing:.02em;
+    }
+    .videha-masthead-deva{
+      display:block;
+      font-family:'Playfair Display','Noto Serif Devanagari',serif;
+      font-size:clamp(18px,2.2vw,25px);
+      color:var(--vd-crimson);
+      letter-spacing:.12em;
+      margin-top:.35rem;
+      text-transform:none;
+    }
+    .videha-main-content{
+      max-width:1120px;
+      margin:0 auto;
+      padding:28px 20px 42px;
+      background:#fff;
+      box-shadow:0 0 40px rgba(31,42,68,.04);
+    }
+    .thesaurus-intro{
+      border:1px solid var(--vd-rule);
+      background:var(--vd-paper);
+      padding:22px 26px;
+      margin:0 auto 22px;
+      position:relative;
+    }
+    .thesaurus-intro::before{
+      content:"";position:absolute;inset:5px;border:1px solid var(--vd-rule-soft);pointer-events:none;
+    }
+    .thesaurus-strip{
+      background:linear-gradient(90deg,var(--vd-gold) 0%,var(--vd-crimson) 52%,var(--vd-indigo) 100%);
+      color:#FAF6EE;
+      padding:10px 16px;
+      margin:0 0 14px;
+      text-align:center;
+      font-weight:700;
+      font-family:'Noto Serif Devanagari','Libre Baskerville',serif;
+      border-radius:2px;
+    }
+    .thesaurus-title{
+      margin:.4rem 0 .35rem;
+      color:var(--vd-crimson);
+      font-family:'Playfair Display','Noto Serif Devanagari',serif;
+      font-size:clamp(1.45rem,3vw,2.25rem);
+      line-height:1.35;
+      text-align:center;
+    }
+    .thesaurus-subtitle{
+      margin:0 auto;
+      max-width:820px;
+      color:var(--vd-ink-soft);
+      text-align:center;
+      font-size:.98rem;
+    }
+    .controls{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+      background:var(--vd-cream);
+      border:1px solid var(--vd-rule);
+      padding:14px;
+      margin:18px 0 12px;
+    }
+    .controls select,
+    .controls input[type="search"]{
+      min-height:42px;
+      border:1px solid var(--vd-rule);
+      background:#fff;
+      color:var(--vd-ink);
+      padding:8px 12px;
+      border-radius:0;
+      font-family:'Noto Serif Devanagari','Libre Baskerville',Georgia,serif;
+      font-size:.95rem;
+    }
+    .controls select{flex:0 1 270px;}
+    .controls input[type="search"]{flex:1 1 320px;}
+    .controls select:focus,
+    .controls input[type="search"]:focus{
+      outline:none;
+      border-color:var(--vd-crimson);
+      box-shadow:0 0 0 3px rgba(139,26,26,.10);
+    }
+    .controls button{
+      min-height:42px;
+      border:1px solid var(--vd-crimson);
+      background:transparent;
+      color:var(--vd-crimson);
+      padding:8px 16px;
+      border-radius:0;
+      font-family:'Libre Baskerville','Noto Serif Devanagari',Georgia,serif;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .controls button:hover,
+    .controls button:focus{
+      background:var(--vd-crimson);
+      color:#fff;
+      outline:none;
+    }
+    .controls label{
+      display:inline-flex;
+      gap:6px;
+      align-items:center;
+      color:var(--vd-ink-soft);
+      font-size:.9rem;
+      white-space:nowrap;
+    }
+    #status{
+      display:inline-block;
+      color:var(--vd-indigo);
+      font-size:.85rem;
+      margin-left:auto;
+    }
+    .script-help{
+      margin:.45rem 0 0;
+      color:var(--vd-ink-soft);
+      font-size:.86rem;
+      background:#fff;
+      border-left:3px solid var(--vd-gold);
+      padding:8px 12px;
+    }
+    #results{
+      margin-top:16px;
+    }
+    footer.videha-footer{
+      background:var(--vd-indigo);
+      color:#F6EEDC;
+      text-align:center;
+      padding:22px 20px;
+      font-size:13.5px;
+      letter-spacing:.04em;
+      border-top:3px double var(--vd-gold);
+      margin-top:40px;
+      font-family:'Libre Baskerville','Noto Serif Devanagari',Georgia,serif;
+    }
+
+    .videha-stats-panel{
+      margin:18px 0 12px;
+      border:1px solid var(--vd-rule);
+      background:#fff;
+      padding:14px;
+    }
+    .videha-stats-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+      border-bottom:1px solid var(--vd-rule-soft);
+      padding-bottom:10px;
+      margin-bottom:12px;
+    }
+    .videha-stats-title{
+      margin:0;
+      color:var(--vd-crimson);
+      font-family:'Playfair Display','Noto Serif Devanagari',serif;
+      font-size:1.15rem;
+      line-height:1.35;
+    }
+    .videha-stats-note{
+      margin:.25rem 0 0;
+      color:var(--vd-ink-soft);
+      font-size:.82rem;
+    }
+    .videha-stats-loaded{
+      color:var(--vd-indigo);
+      font-size:.78rem;
+      background:var(--vd-cream);
+      border:1px solid var(--vd-rule-soft);
+      padding:5px 8px;
+      white-space:nowrap;
+    }
+    .videha-stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+    }
+    .videha-stat-card{
+      background:var(--vd-paper);
+      border:1px solid var(--vd-rule-soft);
+      border-left:3px solid var(--vd-crimson);
+      padding:10px 12px;
+      min-height:86px;
+    }
+    .videha-stat-label{
+      display:block;
+      color:var(--vd-ink-soft);
+      font-size:.78rem;
+      line-height:1.35;
+      margin-bottom:4px;
+    }
+    .videha-stat-number{
+      display:block;
+      color:var(--vd-indigo);
+      font-family:'Libre Baskerville','Noto Serif Devanagari',Georgia,serif;
+      font-weight:700;
+      font-size:1.45rem;
+      line-height:1.2;
+    }
+    .videha-stat-sub{
+      display:block;
+      margin-top:3px;
+      color:var(--vd-ink-soft);
+      font-size:.72rem;
+      line-height:1.35;
+    }
+    @media(max-width:900px){
+      .videha-stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+    }
+    @media(max-width:520px){
+      .videha-stats-grid{grid-template-columns:1fr;}
+      .videha-stats-loaded{white-space:normal;}
+    }
+
+    @media(max-width:760px){
+      .videha-utilbar{justify-content:center;text-align:center;}
+      .videha-utilbar-social{justify-content:center;}
+      .videha-main-content{padding:18px 12px 32px;box-shadow:none;}
+      .thesaurus-intro{padding:18px 14px;}
+      .controls{display:block;}
+      .controls select,.controls input[type="search"],.controls button{width:100%;margin:.3rem 0;}
+      .controls label{margin:.35rem 0;white-space:normal;}
+      #status{display:block;margin:.45rem 0 0;}
+    }
+  </style>
+
+<style>
+  body{margin:0;background:#FAF6EE!important;}
+  .videha-skip,.videha-a11y-bar,.videha-topbar,.videha-utilbar,.videha-masthead,.videha-nav,.videha-footer{display:none!important;}
+  .videha-main-content{max-width:1120px;margin:0 auto;padding:0;background:transparent!important;box-shadow:none!important;}
+  .thesaurus-intro{margin:0!important;}
+  .thesaurus-title{margin-top:0!important;}
+</style>
+</head>
+<body>
+<main id="videha-main" class="videha-main-content" tabindex="-1">
+    <section class="thesaurus-intro" aria-labelledby="thesaurus-title">
+      
+      <h2 id="thesaurus-title" class="thesaurus-title">Videha Combined Thesaurus + WordNet</h2>
+      <p class="thesaurus-subtitle">English-Maithili and Maithili-English base thesaurus with rebuilt WordNet 2.1 senses and relations.</p>
+
+      <section class="controls" aria-label="Thesaurus search controls">
+        <select id="volume" aria-label="Choose thesaurus volume">
+          <option value="em">English-Maithili + WordNet</option>
+          <option value="me">Maithili-English + WordNet</option>
+        </select>
+        <input id="q" type="search" placeholder="Search: मैथिली · maithili · maithilī · mithilA · kavi..." autocomplete="off" lang="mai" aria-label="Search word or meaning">
+        <button id="search" type="button">Search</button>
+        <button id="clear" type="button">Clear</button>
+        <label><input type="checkbox" id="deep"> Deep search all chunks</label>
+        <span id="status" role="status" aria-live="polite">Loading manifest...</span>
+      </section>
+
+
+      <section class="videha-stats-panel" aria-labelledby="videha-stats-title">
+        <div class="videha-stats-head">
+          <div>
+            <h3 id="videha-stats-title" class="videha-stats-title">सजीव आँकड़ा · Dynamic database counts</h3>
+            <p class="videha-stats-note">प्रामाणिक कुल: English–Maithili 273,188 base + 147,264 WordNet = 420,452; Maithili–English 141,875 cleaned base + 147,264 WordNet = 289,139. Search / Deep search सँ loaded-source आँकड़ा स्वतः बढ़त।</p>
+          </div>
+          <span id="videha-stats-loaded" class="videha-stats-loaded" role="status" aria-live="polite">Loaded sources: 0</span>
+        </div>
+        <div class="videha-stats-grid" aria-live="polite">
+          <div class="videha-stat-card">
+            <span class="videha-stat-label">Words / Headwords</span>
+            <span id="vd-stat-words-total" class="videha-stat-number">0</span>
+            <span class="videha-stat-sub"><b id="vd-stat-words-em">0</b> English→Maithili · <b id="vd-stat-words-me">0</b> Maithili→English</span>
+          </div>
+          <div class="videha-stat-card">
+            <span class="videha-stat-label">Synonyms / प्रतिशब्द</span>
+            <span id="vd-stat-syn-total" class="videha-stat-number">0</span>
+            <span class="videha-stat-sub"><b id="vd-stat-syn-em">0</b> English→Maithili · <b id="vd-stat-syn-me">0</b> Maithili→English</span>
+          </div>
+          <div class="videha-stat-card">
+            <span class="videha-stat-label">Antonyms / विलोम</span>
+            <span id="vd-stat-ant-total" class="videha-stat-number">0</span>
+            <span class="videha-stat-sub"><b id="vd-stat-ant-em">0</b> English→Maithili · <b id="vd-stat-ant-me">0</b> Maithili→English</span>
+          </div>
+          <div class="videha-stat-card">
+            <span class="videha-stat-label">Senses / अर्थ-प्रविष्टि</span>
+            <span id="vd-stat-sense-total" class="videha-stat-number">0</span>
+            <span class="videha-stat-sub">WordNet / gloss / meaning fields counted dynamically</span>
+          </div>
+          <div class="videha-stat-card">
+            <span class="videha-stat-label">Hypernyms / उच्चवर्ग</span>
+            <span id="vd-stat-hyper-total" class="videha-stat-number">0</span>
+            <span class="videha-stat-sub"><b id="vd-stat-hyper-em">0</b> English→Maithili · <b id="vd-stat-hyper-me">0</b> Maithili→English</span>
+          </div>
+          <div class="videha-stat-card">
+            <span class="videha-stat-label">IT Glossary / सूचना-प्रौद्योगिकी</span>
+            <span id="vd-stat-it-total" class="videha-stat-number">0</span>
+            <span class="videha-stat-sub">computer · software · web · data · डिजिटल आदि metadata सँ</span>
+          </div>
+          <div class="videha-stat-card">
+            <span class="videha-stat-label">Loaded records / प्रविष्टि</span>
+            <span id="vd-stat-record-total" class="videha-stat-number">0</span>
+            <span class="videha-stat-sub"><b id="vd-stat-record-em">0</b> EM · <b id="vd-stat-record-me">0</b> ME · <b id="vd-stat-record-unk">0</b> other</span>
+          </div>
+          <div class="videha-stat-card">
+            <span class="videha-stat-label">Chunks / sources scanned</span>
+            <span id="vd-stat-source-total" class="videha-stat-number">0</span>
+            <span class="videha-stat-sub">manifest/chunk JSON loads captured from app.js</span>
+          </div>
+        </div>
+      </section>
+
+      <p class="script-help">Search accepts Devanagari, plain Roman, IAST, ISO 15919, and Harvard-Kyoto forms. Examples: <b>राम</b>, <b>rāma</b>, <b>rAma</b>, <b>maithilī</b>, <b>मैथिली</b>.</p>
+    </section>
+
+    <section id="results" aria-live="polite"></section>
+  </main>
+<script id="videha-cross-script-search">
+  /*
+    Videha cross-script search compatibility layer.
+    It keeps the existing app.js untouched, but makes ordinary string matching
+    Devanagari / Roman / IAST / ISO 15919 / Harvard-Kyoto tolerant.
+  */
+  (function(){
+    if (window.__videhaCrossScriptSearchReady) return;
+    window.__videhaCrossScriptSearchReady = true;
+
+    var nativeIncludes = String.prototype.includes;
+    var nativeIndexOf = String.prototype.indexOf;
+    var nativeStartsWith = String.prototype.startsWith;
+    var cache = new Map();
+    var MAX_CACHE = 12000;
+
+    var vowels = {
+      'अ':'a','आ':'aa','इ':'i','ई':'ii','उ':'u','ऊ':'uu','ऋ':'r','ॠ':'rr','ऌ':'l','ॡ':'ll',
+      'ए':'e','ऐ':'ai','ओ':'o','औ':'au','ऑ':'o','ऒ':'o','ॲ':'e','ऍ':'e'
+    };
+    var matras = {
+      'ा':'aa','ि':'i','ी':'ii','ु':'u','ू':'uu','ृ':'r','ॄ':'rr','ॢ':'l','ॣ':'ll',
+      'े':'e','ै':'ai','ो':'o','ौ':'au','ॉ':'o','ॊ':'o','ॅ':'e','ॅ':'e','ॆ':'e'
+    };
+    var consonants = {
+      'क':'k','ख':'kh','ग':'g','घ':'gh','ङ':'ng',
+      'च':'c','छ':'ch','ज':'j','झ':'jh','ञ':'ny',
+      'ट':'t','ठ':'th','ड':'d','ढ':'dh','ण':'n',
+      'त':'t','थ':'th','द':'d','ध':'dh','न':'n',
+      'प':'p','फ':'ph','ब':'b','भ':'bh','म':'m',
+      'य':'y','र':'r','ल':'l','व':'v','श':'sh','ष':'sh','स':'s','ह':'h','ळ':'l',
+      'क़':'q','ख़':'kh','ग़':'g','ज़':'z','ड़':'d','ढ़':'dh','फ़':'f','य़':'y'
+    };
+    var devaDigits = {'०':'0','१':'1','२':'2','३':'3','४':'4','५':'5','६':'6','७':'7','८':'8','९':'9'};
+
+    function devaToRoman(input){
+      var s = String(input || '');
+      var out = '';
+      for (var i=0;i<s.length;i++){
+        var ch = s[i];
+        if (devaDigits[ch] !== undefined){ out += devaDigits[ch]; continue; }
+        if (vowels[ch]){ out += vowels[ch]; continue; }
+        if (consonants[ch]){
+          out += consonants[ch];
+          var next = s[i+1];
+          if (next === '्') { i++; continue; }
+          if (matras[next] !== undefined) { out += matras[next]; i++; continue; }
+          if (next === '़') { i++; }
+          out += 'a';
+          continue;
+        }
+        if (matras[ch] !== undefined){ out += matras[ch]; continue; }
+        if (ch === 'ं' || ch === 'ँ' || ch === 'ॐ'){ out += (ch === 'ॐ' ? 'om' : 'm'); continue; }
+        if (ch === 'ः'){ out += 'h'; continue; }
+        if (ch === '्' || ch === '़' || ch === '\u200c' || ch === '\u200d'){ continue; }
+        out += ch;
+      }
+      return out;
+    }
+
+    function foldRoman(input){
+      var s = String(input || '').normalize('NFC');
+      var replacements = {
+        'ā':'aa','Ā':'aa','ī':'ii','Ī':'ii','ū':'uu','Ū':'uu',
+        'ṛ':'r','Ṛ':'r','ṝ':'rr','Ṝ':'rr','ḷ':'l','Ḷ':'l','ḹ':'ll','Ḹ':'ll',
+        'ṅ':'ng','Ṅ':'ng','ñ':'ny','Ñ':'ny','ṭ':'t','Ṭ':'t','ḍ':'d','Ḍ':'d','ṇ':'n','Ṇ':'n',
+        'ś':'sh','Ś':'sh','ṣ':'sh','Ṣ':'sh','ṃ':'m','Ṃ':'m','ṁ':'m','Ṁ':'m','ḥ':'h','Ḥ':'h',
+        'ẏ':'y','Ẏ':'y','ḻ':'l','Ḻ':'l','ḵ':'kh','Ḵ':'kh','ġ':'g','Ġ':'g','ż':'z','Ż':'z','ṝ':'rr'
+      };
+      s = s.replace(/[āĀīĪūŪṛṚṝṜḷḶḹḸṅṄñÑṭṬḍḌṇṆśŚṣṢṃṂṁṀḥḤẏẎḻḺḵḴġĠżŻ]/g, function(c){ return replacements[c] || c; });
+      s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      return cleanKey(s);
+    }
+
+    function hkToRoman(input){
+      var s = String(input || '');
+      return s
+        .replace(/lRR/g,'lrr').replace(/lR/g,'lr')
+        .replace(/RR/g,'rr').replace(/R/g,'r')
+        .replace(/A/g,'aa').replace(/I/g,'ii').replace(/U/g,'uu')
+        .replace(/G/g,'ng').replace(/J/g,'ny')
+        .replace(/T/g,'t').replace(/D/g,'d').replace(/N/g,'n')
+        .replace(/z/g,'sh').replace(/S/g,'sh')
+        .replace(/M/g,'m').replace(/H/g,'h');
+    }
+
+    function cleanKey(s){
+      return String(s || '')
+        .toLowerCase()
+        .replace(/[\u200c\u200d]/g,'')
+        .replace(/[^a-z0-9\u0900-\u097f]+/g,' ')
+        .replace(/\s+/g,' ')
+        .trim();
+    }
+
+    function looseKey(s){
+      return cleanKey(String(s || '')
+        .replace(/aa/g,'a').replace(/ii/g,'i').replace(/uu/g,'u')
+        .replace(/ksh/g,'ks').replace(/chh/g,'ch')
+        .replace(/kh/g,'k').replace(/gh/g,'g').replace(/ch/g,'c').replace(/jh/g,'j')
+        .replace(/th/g,'t').replace(/dh/g,'d').replace(/ph/g,'p').replace(/bh/g,'b')
+        .replace(/sh/g,'s').replace(/ny/g,'n').replace(/ng/g,'n')
+        .replace(/w/g,'v'));
+    }
+
+    function unique(list){
+      var seen = Object.create(null), out=[];
+      for (var i=0;i<list.length;i++){
+        var v = list[i];
+        if (!v || seen[v]) continue;
+        seen[v] = 1; out.push(v);
+      }
+      return out;
+    }
+
+    function keysFor(value){
+      var raw = String(value == null ? '' : value);
+      if (cache.has(raw)) return cache.get(raw);
+      var base = cleanKey(raw);
+      var deva = foldRoman(devaToRoman(raw));
+      var roman = foldRoman(raw);
+      var hk = foldRoman(hkToRoman(raw));
+      var keys = unique([base, roman, deva, hk, looseKey(base), looseKey(roman), looseKey(deva), looseKey(hk)]);
+      if (cache.size > MAX_CACHE) cache.clear();
+      cache.set(raw, keys);
+      return keys;
+    }
+
+    function crossContains(haystack, needle){
+      haystack = String(haystack == null ? '' : haystack);
+      needle = String(needle == null ? '' : needle);
+      if (needle === '') return true;
+      if (nativeIncludes.call(haystack, needle)) return true;
+      var hs = keysFor(haystack);
+      var ns = keysFor(needle);
+      for (var i=0;i<hs.length;i++){
+        for (var j=0;j<ns.length;j++){
+          if (ns[j] && nativeIncludes.call(hs[i], ns[j])) return true;
+        }
+      }
+      return false;
+    }
+
+    String.prototype.includes = function(search, start){
+      if (arguments.length > 1 && start) {
+        if (nativeIncludes.call(this, search, start)) return true;
+        return crossContains(String(this).slice(start), search);
+      }
+      return crossContains(this, search);
+    };
+
+    String.prototype.indexOf = function(search, start){
+      var direct = nativeIndexOf.call(this, search, start || 0);
+      if (direct !== -1) return direct;
+      if (start && start > 0) return crossContains(String(this).slice(start), search) ? start : -1;
+      return crossContains(this, search) ? 0 : -1;
+    };
+
+    String.prototype.startsWith = function(search, start){
+      if (nativeStartsWith.call(this, search, start || 0)) return true;
+      var h = start ? String(this).slice(start) : String(this);
+      var hs = keysFor(h), ns = keysFor(search);
+      for (var i=0;i<hs.length;i++){
+        for (var j=0;j<ns.length;j++){
+          if (ns[j] && nativeStartsWith.call(hs[i], ns[j])) return true;
+        }
+      }
+      return false;
+    };
+
+    window.VidehaSearchNormalizer = { keysFor: keysFor, devaToRoman: devaToRoman, foldRoman: foldRoman, looseKey: looseKey };
+  })();
+  </script>
+<script id="videha-dynamic-statistics">
+  /*
+    Dynamic database-count dashboard for Videha Combined Thesaurus.
+    Runs before app.js, intercepts JSON manifest/chunk loads, and tallies:
+    words/headwords, synonyms, antonyms, senses, hypernyms, IT glossary entries.
+  */
+  (function(){
+    if (window.__videhaDynamicStatsReady) return;
+    window.__videhaDynamicStatsReady = true;
+
+    var fmt = new Intl.NumberFormat('en-IN');
+    var state = {
+      sources:new Set(),
+      seen:new Set(),
+      records:{em:0,me:0,unk:0},
+      words:{em:new Set(),me:new Set(),unk:new Set()},
+      syn:{em:0,me:0,unk:0},
+      ant:{em:0,me:0,unk:0},
+      hyper:{em:0,me:0,unk:0},
+      sense:{em:0,me:0,unk:0},
+      it:new Set(),
+      pendingRender:false
+    };
+
+    function norm(s){
+      return String(s == null ? '' : s).toLowerCase().replace(/[\u200c\u200d]/g,'').replace(/\s+/g,' ').trim();
+    }
+    function compact(s){
+      return norm(s).replace(/[^a-z0-9\u0900-\u097f]+/g,'');
+    }
+    function arr(v){
+      if (v == null || v === '') return [];
+      if (Array.isArray(v)) return v.flatMap(arr);
+      if (typeof v === 'object') return Object.values(v).flatMap(arr);
+      return String(v)
+        .split(/[|;،,]+|\s+\/\s+|\s+·\s+|\s+•\s+/)
+        .map(function(x){return x.trim();})
+        .filter(Boolean);
+    }
+    function valCount(v){ return arr(v).length; }
+    function keyHas(k, rx){ return rx.test(String(k || '').toLowerCase().replace(/[\s_-]+/g,'')); }
+    function valuesByKey(obj, rx){
+      var out=[];
+      if (!obj || typeof obj !== 'object') return out;
+      Object.keys(obj).forEach(function(k){ if (keyHas(k, rx)) out.push(obj[k]); });
+      return out;
+    }
+    function firstByKey(obj, rx){
+      var vals = valuesByKey(obj, rx);
+      for (var i=0;i<vals.length;i++){
+        var a = arr(vals[i]);
+        if (a.length) return a[0];
+        if (typeof vals[i] === 'string' && vals[i].trim()) return vals[i].trim();
+      }
+      return '';
+    }
+    function detectDirection(obj, source){
+      var hay = norm([source, obj && (obj.volume || obj.direction || obj.dir || obj.dataset || obj.book || obj.file || obj.sheet || obj.source || obj.collection || obj.type || obj.title)].join(' '));
+      if (/english[_\s-]*maithili|english.*maithili|(^|[^a-z])em([^a-z]|$)|(^|[^a-z])eng[-_]?mai([^a-z]|$)/.test(hay)) return 'em';
+      if (/maithili[_\s-]*english|maithili.*english|(^|[^a-z])me([^a-z]|$)|(^|[^a-z])mai[-_]?eng([^a-z]|$)/.test(hay)) return 'me';
+      var head = firstByKey(obj, /headword|word|lemma|term|entry|english|maithili|^mai$|^en$/);
+      if (/^[\u0900-\u097f\s\-'.]+$/.test(String(head || '').trim())) return 'me';
+      if (/^[a-zA-Z0-9\s\-'.]+$/.test(String(head || '').trim())) return 'em';
+      return 'unk';
+    }
+    function isLikelyEntry(obj){
+      if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return false;
+      var keys = Object.keys(obj).map(function(k){return k.toLowerCase();}).join('|');
+      return /(headword|lemma|word|term|entry|english|maithili|meaning|definition|gloss|sense|synonym|antonym|hypernym|hyponym|pos|partofspeech|itglossary|glossary|domain|category)/.test(keys);
+    }
+    function senseCount(obj){
+      var c = 0;
+      valuesByKey(obj, /^(senses|sense)$/).forEach(function(v){ c += Array.isArray(v) ? v.length : (String(v || '').trim() ? 1 : 0); });
+      ['definition','definitions','meaning','meanings','gloss','glosses','description'].forEach(function(k){
+        if (Object.prototype.hasOwnProperty.call(obj,k)) c += Math.max(1, valCount(obj[k]));
+      });
+      return c;
+    }
+    function itKey(obj, source){
+      var meta = [source];
+      ['domain','domains','category','categories','subject','subjects','tag','tags','topic','topics','source','sheet','collection','book','title','type','section'].forEach(function(k){
+        if (obj && obj[k] != null) meta.push(String(obj[k]));
+      });
+      var hay = meta.join(' ').toLowerCase();
+      return /\b(it|ict|i\.t\.|computer|computing|technology|digital|software|hardware|internet|web|database|data|programming|network|cyber|ai|glossary)\b|सूचना|प्रौद्योगिकी|तकनीक|तकनीकी|कम्प्यूटर|कंप्यूटर|सॉफ्टवेयर|हार्डवेयर|इंटरनेट|डिजिटल|डाटा|डेटा|वेब|साइबर/.test(hay);
+    }
+    function wordKeyFor(obj){
+      var fields = /headword|word|lemma|term|entry|english|maithili|sourceword|targetword|^mai$|^en$/;
+      var vals = valuesByKey(obj, fields).flatMap(arr);
+      if (!vals.length) vals = valuesByKey(obj, /words|lemmas|synsetwords/).flatMap(arr);
+      return vals.map(compact).filter(Boolean);
+    }
+    function relationCount(obj, rx){
+      var total = 0;
+      valuesByKey(obj, rx).forEach(function(v){ total += valCount(v); });
+      return total;
+    }
+    function entryKey(obj, source, dir){
+      var id = obj.id || obj.uid || obj.key || obj.synset || obj.synset_id || obj.offset || obj.row || obj.index || '';
+      var head = firstByKey(obj, /headword|word|lemma|term|entry|english|maithili|^mai$|^en$/);
+      var pos = obj.pos || obj.part_of_speech || obj.partOfSpeech || '';
+      var gloss = obj.gloss || obj.definition || obj.meaning || '';
+      return [dir, source, id, compact(head), compact(pos), compact(String(gloss).slice(0,80))].join('|');
+    }
+    function tallyEntry(obj, source){
+      var dir = detectDirection(obj, source);
+      var key = entryKey(obj, source, dir);
+      if (!key.replace(/[|]/g,'')) return;
+      if (state.seen.has(key)) return;
+      state.seen.add(key);
+
+      state.records[dir]++;
+      wordKeyFor(obj).forEach(function(w){ state.words[dir].add(w); });
+
+      // Synonyms include explicit synonym/similar fields plus WordNet lemma arrays.
+      state.syn[dir] += relationCount(obj, /synonym|similar|similarto|near|nearsynonym|related|equivalent|lemma|synsetword/);
+      state.ant[dir] += relationCount(obj, /antonym|opposite|contrary/);
+      state.hyper[dir] += relationCount(obj, /hypernym|is_a|isa|superordinate|parent|broader/);
+      state.sense[dir] += senseCount(obj);
+
+      if (itKey(obj, source)) {
+        var wk = wordKeyFor(obj)[0] || key;
+        state.it.add(dir + '|' + wk);
+      }
+    }
+    function harvest(payload, source, depth){
+      source = String(source || 'unknown');
+      depth = depth || 0;
+      if (depth > 7 || payload == null) return;
+      if (source) state.sources.add(source);
+      if (Array.isArray(payload)) {
+        for (var i=0;i<payload.length;i++) harvest(payload[i], source, depth+1);
+        scheduleRender();
+        return;
+      }
+      if (typeof payload === 'object') {
+        if (isLikelyEntry(payload)) tallyEntry(payload, source);
+        Object.keys(payload).forEach(function(k){
+          var v = payload[k];
+          if (v && typeof v === 'object') harvest(v, source + '#' + k, depth+1);
+        });
+        scheduleRender();
+      }
+    }
+    function totalBag(bag){ return bag.em + bag.me + bag.unk; }
+    function totalSetBag(bag){ return new Set([].concat(Array.from(bag.em),Array.from(bag.me),Array.from(bag.unk))).size; }
+    function setText(id, value){ var el=document.getElementById(id); if (el) el.textContent = fmt.format(value || 0); }
+    function render(){
+      state.pendingRender=false;
+      setText('vd-stat-words-em', state.words.em.size);
+      setText('vd-stat-words-me', state.words.me.size);
+      setText('vd-stat-words-total', totalSetBag(state.words));
+      setText('vd-stat-syn-em', state.syn.em);
+      setText('vd-stat-syn-me', state.syn.me);
+      setText('vd-stat-syn-total', totalBag(state.syn));
+      setText('vd-stat-ant-em', state.ant.em);
+      setText('vd-stat-ant-me', state.ant.me);
+      setText('vd-stat-ant-total', totalBag(state.ant));
+      setText('vd-stat-sense-total', totalBag(state.sense));
+      setText('vd-stat-hyper-em', state.hyper.em);
+      setText('vd-stat-hyper-me', state.hyper.me);
+      setText('vd-stat-hyper-total', totalBag(state.hyper));
+      setText('vd-stat-it-total', state.it.size);
+      setText('vd-stat-record-em', state.records.em);
+      setText('vd-stat-record-me', state.records.me);
+      setText('vd-stat-record-unk', state.records.unk);
+      setText('vd-stat-record-total', totalBag(state.records));
+      setText('vd-stat-source-total', state.sources.size);
+      var loaded = document.getElementById('videha-stats-loaded');
+      if (loaded) loaded.textContent = 'Loaded sources: ' + fmt.format(state.sources.size) + ' · Records: ' + fmt.format(totalBag(state.records));
+    }
+    function scheduleRender(){
+      if (state.pendingRender) return;
+      state.pendingRender=true;
+      setTimeout(render, 120);
+    }
+
+    // Capture app.js JSON loads without changing app.js.
+    if (window.fetch) {
+      var nativeFetch = window.fetch;
+      window.fetch = function(){
+        var args = arguments;
+        var url = args[0] && (args[0].url || args[0].href || args[0]);
+        return nativeFetch.apply(this,args).then(function(res){
+          try{
+            var ct = (res.headers && res.headers.get && res.headers.get('content-type')) || '';
+            var u = String(url || res.url || '');
+            if (/json/i.test(ct) || /\.json(\?|$)/i.test(u)) {
+              res.clone().json().then(function(data){ harvest(data, u, 0); }).catch(function(){});
+            }
+          }catch(e){}
+          return res;
+        });
+      };
+    }
+
+    if (window.XMLHttpRequest) {
+      var xo = XMLHttpRequest.prototype.open, xs = XMLHttpRequest.prototype.send;
+      XMLHttpRequest.prototype.open = function(method, url){ this.__videhaStatsUrl = url; return xo.apply(this, arguments); };
+      XMLHttpRequest.prototype.send = function(){
+        this.addEventListener('load', function(){
+          try{
+            var u = String(this.__videhaStatsUrl || '');
+            var ct = this.getResponseHeader && this.getResponseHeader('content-type') || '';
+            if (/json/i.test(ct) || /\.json(\?|$)/i.test(u)) harvest(JSON.parse(this.responseText), u, 0);
+          }catch(e){}
+        });
+        return xs.apply(this, arguments);
+      };
+    }
+
+    // Fallback: if app.js exposes loaded arrays globally, harvest them too.
+    function scanGlobals(){
+      Object.keys(window).forEach(function(k){
+        if (!/(data|entry|entries|chunk|word|wordnet|thesaurus|dict|gloss|manifest|record)/i.test(k)) return;
+        try{
+          var v = window[k];
+          if (v && (Array.isArray(v) || (typeof v === 'object' && Object.keys(v).length < 2000))) harvest(v, 'window.' + k, 0);
+        }catch(e){}
+      });
+      render();
+    }
+    document.addEventListener('DOMContentLoaded', render);
+    window.addEventListener('load', function(){ setTimeout(scanGlobals, 700); setTimeout(scanGlobals, 2500); setTimeout(scanGlobals, 6000); });
+    window.VidehaDynamicStats = { harvest: harvest, render: render, state: state };
+  })();
+  </script>
+<script src="app.js?v=mobile-20260707-3"></script>
+<script>
+(function(){
+  function sendHeight(){
+    try{ parent.postMessage({type:'videha-search-embed-height',height:document.documentElement.scrollHeight}, '*'); }catch(e){}
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  new MutationObserver(sendHeight).observe(document.documentElement, {childList:true,subtree:true,attributes:true,characterData:true});
+  setInterval(sendHeight, 1500);
+})();
+</script>
+</body>
+</html>
