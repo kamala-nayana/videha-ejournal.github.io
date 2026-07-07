@@ -1,0 +1,1 @@
+window.VIDEHA_SHARD_PAYLOAD={"shard":"me_wn_pilot_ऐ","records":[{"id":900000945,"v":"me","sec":"WordNet Pilot 001","h":"ऐक्रिलिक अम्ल","m":"acrylic acid","e":"an unsaturated liquid carboxylic acid used in the manufacture of acrylic resins","syn":"propenoic acid","ant":"","pos":"noun","source":"WordNet 2.1, Princeton University; Videha Maithili pilot reverse entry batch 001"}]};

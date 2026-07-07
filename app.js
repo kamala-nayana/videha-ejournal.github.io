@@ -88,8 +88,8 @@
   function pass(entry, f) {
     if (f.volume !== "all" && entry.v !== f.volume) return false;
     if (f.section !== "all" && entry.sec !== f.section) return false;
-    if (f.onlySyn && !entry.syn) return false;
-    if (f.onlyAnt && !entry.ant) return false;
+    if (f.onlySyn && !(entry.syn || entry.syn_m || entry.syn_en)) return false;
+    if (f.onlyAnt && !(entry.ant || entry.ant_m || entry.ant_en)) return false;
       return true;
   }
 
@@ -121,14 +121,14 @@
         .sort((a,b) => a.score - b.score || a.h.length - b.h.length)
         .slice(0, 250);
     } else {
-      hits = allIndex.filter(x => pass(x, f) && (x.n.includes(f.q) || (x.m || "").includes(f.q) || (x.e || "").toLocaleLowerCase().includes(f.q) || (x.syn || "").toLocaleLowerCase().includes(f.q)))
+      hits = allIndex.filter(x => pass(x, f) && (x.n.includes(f.q) || (x.m || "").includes(f.q) || (x.e || "").toLocaleLowerCase().includes(f.q) || norm([x.syn, x.ant, x.syn_m, x.ant_m, x.syn_en, x.ant_en].join(" ")).includes(f.q)))
         .slice(0, 350);
       // Search cached full shards too, giving richer full-text hits as the user explores.
       const cached = [];
       for (const [sh, records] of shardCache.entries()) {
         for (const r of records) {
-          const text = norm([r.h, r.m, r.e, r.syn, r.ant].join(" "));
-          if (text.includes(f.q)) cached.push({id:r.id, v:r.v, sh, sec:r.sec, h:r.h, n:norm(r.h), syn:!!r.syn, ant:!!r.ant});
+          const text = norm([r.h, r.m, r.e, r.syn, r.ant, r.syn_m, r.ant_m, r.syn_en, r.ant_en].join(" "));
+          if (text.includes(f.q)) cached.push({id:r.id, v:r.v, sh, sec:r.sec, h:r.h, n:norm(r.h), syn:!!(r.syn || r.syn_m || r.syn_en), ant:!!(r.ant || r.ant_m || r.ant_en)});
         }
       }
       hits = mergeHits(hits, cached).slice(0, 350);
@@ -194,21 +194,27 @@
       <div class="meta"><span class="badge">${volumeLabel(r.v)}</span><span class="badge">${esc(r.sec)}</span>${r.pos ? `<span class="badge">${esc(r.pos)}</span>` : ""}</div>
       ${field("Maithili meaning", r.m)}
       ${field("English explanation", r.e)}
-      ${field("पर्यायवाची / Synonym", r.syn, "syn")}
-      ${field("विपरीतार्थक / Antonym", r.ant, "ant")}
+      ${field("मैथिली अधिवर्ग-वृक्ष", r.hypernym_m)}
+      ${field("मैथिली सम्बन्ध", r.relations_m)}
+      ${field("English hypernym tree", r.hypernym_en)}
+      ${field("English semantic relations", r.relations_en)}
+      ${field("मैथिली पर्यायवाची", r.syn_m, "syn")}
+      ${field("English synonym source", r.syn_en || (!r.syn_m ? r.syn : ""), "syn")}
+      ${field("मैथिली विलोम", r.ant_m, "ant")}
+      ${field("English antonym source", r.ant_en || (!r.ant_m ? r.ant : ""), "ant")}
       ${field("Source", r.source)}
     </article>`;
   }
 
   async function exportCsv() {
-    const rows = [["Volume","Section","Headword","Maithili Meaning","English Explanation","Synonym","Antonym","Source"]];
+    const rows = [["Volume","Section","Headword","Maithili Meaning","English Explanation","Maithili Synonym","English Synonym Source","Maithili Antonym","English Antonym Source","Source"]];
     for (const h of state.results.slice(0, 500)) {
       if (h.v === "wn") {
-        rows.push([h.v, h.sec, h.h, h.m || "", h.e, h.syn, "", h.source || "WordNet 2.1, Princeton University"]);
+        rows.push([h.v, h.sec, h.h, h.m || "", h.e, h.syn_m || "", h.syn_en || h.syn || "", h.ant_m || "", h.ant_en || h.ant || "", h.source || "WordNet 2.1, Princeton University"]);
       } else {
         const records = await loadShard(h.sh);
         const r = records.find(x => x.id === h.id);
-        if (r) rows.push([r.v, r.sec, r.h, r.m, r.e, r.syn, r.ant, r.source || "Videha"]);
+        if (r) rows.push([r.v, r.sec, r.h, r.m, r.e, r.syn_m || "", r.syn_en || r.syn || "", r.ant_m || "", r.ant_en || r.ant || "", r.source || "Videha"]);
       }
     }
     const csv = rows.map(row => row.map(cell => `"${(cell || "").toString().replace(/"/g, '""')}"`).join(",")).join("\n");

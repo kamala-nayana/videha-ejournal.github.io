@@ -1,0 +1,1 @@
+window.VIDEHA_SHARD_PAYLOAD={"shard":"me_wn_pilot_003_ओ","records":[{"id":900008900,"v":"me","sec":"WordNet Pilot 003","h":"ओ कलैर","m":"Eau Claire","e":"a town in west central Wisconsin","syn":"","ant":"","pos":"noun","source":"WordNet 2.1, Princeton University; Videha Maithili controlled translation batch 003; reverse entry","category":"geography-place"}]};

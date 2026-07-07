@@ -1,0 +1,1 @@
+window.VIDEHA_SHARD_PAYLOAD={"shard":"me_wn_pilot_002_८","records":[{"id":900003077,"v":"me","sec":"WordNet Pilot 002","h":"८८० गज","m":"880 yards","e":"a unit of length equal to half of 1 mile","syn":"half mile","ant":"","pos":"noun","source":"WordNet 2.1, Princeton University; Videha Maithili controlled translation batch 002; reverse entry","category":"unit"}]};

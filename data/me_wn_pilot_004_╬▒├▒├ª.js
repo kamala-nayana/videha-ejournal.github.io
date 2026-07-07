@@ -1,0 +1,1 @@
+window.VIDEHA_SHARD_PAYLOAD={"shard":"me_wn_pilot_004_ऑ","records":[{"id":900024624,"v":"me","sec":"WordNet Pilot 004","h":"ऑर्थोपरिसटिस","m":"Orthopristis","e":"a genus of Haemulidae","syn":"genus Orthopristis","ant":"","pos":"noun","source":"WordNet 2.1, Princeton University; Videha Maithili controlled translation batch 004; reverse entry","category":"taxonomy-genus"}]};

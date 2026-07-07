@@ -1,0 +1,1 @@
+window.VIDEHA_SHARD_PAYLOAD={"shard":"me_wn_pilot_002_४","records":[{"id":900003074,"v":"me","sec":"WordNet Pilot 002","h":"४४० गज","m":"440 yards","e":"a unit of length equal to a quarter of 1 mile","syn":"quarter mile","ant":"","pos":"noun","source":"WordNet 2.1, Princeton University; Videha Maithili controlled translation batch 002; reverse entry","category":"unit"}]};
