@@ -269,6 +269,30 @@
       .controls label{margin:.35rem 0;white-space:normal;}
       #status{display:block;margin:.45rem 0 0;}
     }
+
+    .vd-resource-hub{margin:16px 0 18px;padding:14px 16px;border:1px solid var(--vd-rule, #D8CFC0);background:linear-gradient(180deg,#fffdf8 0%,#fff6e8 100%);box-shadow:0 1px 0 rgba(139,26,26,.08);}
+    .vd-resource-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+    .vd-resource-title{margin:0;color:var(--vd-crimson, #8B1A1A);font-family:'Playfair Display','Noto Serif Devanagari',serif;font-size:1.1rem}
+    .vd-resource-note{font-size:.84rem;color:var(--vd-ink-soft, #544D42)}
+    .vd-resource-box details{border:1px solid var(--vd-rule-soft, #E7DECB);background:#fff;margin:8px 0}
+    .vd-resource-box summary{list-style:none;cursor:pointer;padding:11px 14px;font-weight:700;color:var(--vd-indigo, #1F2A44);display:flex;align-items:center;gap:10px}
+    .vd-resource-box summary::-webkit-details-marker{display:none}
+    .vd-resource-box summary::before{content:"▸";font-size:1rem;color:var(--vd-crimson, #8B1A1A);transform:translateY(-1px);transition:transform .18s ease}
+    .vd-resource-box details[open] summary::before{transform:rotate(90deg)}
+    .vd-resource-links{padding:0 14px 14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+    .vd-resource-links a{display:block;text-decoration:none;color:var(--vd-crimson, #8B1A1A);background:#fffdf8;border:1px solid var(--vd-rule, #D8CFC0);padding:9px 10px;font-size:.92rem}
+    .vd-resource-links a:hover{background:#fff3d9}
+    .vd-flag{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;background:#8B1A1A;color:#fff;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;animation:vd-flag-wave 1.4s ease-in-out infinite}
+    .vd-flag::before{content:"⚑";font-size:.88rem}
+    @keyframes vd-flag-wave{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+
+    .controls-grid{display:grid;grid-template-columns:1.2fr .8fr auto auto;gap:10px;align-items:center}
+    .controls-grid .full{grid-column:1 / -1}
+    .controls-filters{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;color:var(--vd-ink-soft);font-size:.86rem}
+    .controls-filters label{display:inline-flex;gap:6px;align-items:center}
+    .quick-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .quick-links button{min-height:36px;padding:6px 12px}
+    @media(max-width:760px){.controls-grid{grid-template-columns:1fr}.controls-grid .full{grid-column:auto}}
   </style>
 
 <style>
@@ -285,17 +309,71 @@
       
       <h2 id="thesaurus-title" class="thesaurus-title">Videha Combined Thesaurus + WordNet</h2>
       <p class="thesaurus-subtitle">English-Maithili and Maithili-English base thesaurus with rebuilt WordNet 2.1 senses and relations.</p>
+      
+<section class="vd-resource-hub" aria-label="Thesaurus download links and software">
+  <div class="vd-resource-head">
+    <h2 class="vd-resource-title">विदेह थिसॉरस डाउनलोड आ सॉफ्टवेयर</h2>
+    <div class="vd-resource-note">खोलू त्रिकोण क्लिक करू। पुरान link हटा देल गेल अछि; एतय अद्यतन PDF आ software package अछि।</div>
+  </div>
+  <div class="vd-resource-box">
+    <details>
+      <summary>VIDEHA ENGLISH MAITHILI THESAURUS</summary>
+      <div class="vd-resource-links">
+        <a href="https://videha-ejournal.github.io/Videha_English_Maithili_Thesaurus_Part_01_of_05.pdf" target="_blank" rel="noopener">GitHub Part 01 of 05</a>
+        <a href="https://videha-ejournal.github.io/Videha_English_Maithili_Thesaurus_Part_02_of_05.pdf" target="_blank" rel="noopener">GitHub Part 02 of 05</a>
+        <a href="https://videha-ejournal.github.io/Videha_English_Maithili_Thesaurus_Part_03_of_05.pdf" target="_blank" rel="noopener">GitHub Part 03 of 05</a>
+        <a href="https://videha-ejournal.github.io/Videha_English_Maithili_Thesaurus_Part_04_of_05.pdf" target="_blank" rel="noopener">GitHub Part 04 of 05</a>
+        <a href="https://videha-ejournal.github.io/Videha_English_Maithili_Thesaurus_Part_05_of_05.pdf" target="_blank" rel="noopener">GitHub Part 05 of 05</a>
+        <a href="https://archive.org/download/videha-thesaurus/Videha_English_Maithili_Thesaurus.pdf" target="_blank" rel="noopener">Archive.org single volume</a>
+      </div>
+    </details>
+    <details>
+      <summary>VIDEHA MAITHILI ENGLISH THESAURUS</summary>
+      <div class="vd-resource-links">
+        <a href="https://videha-ejournal.github.io/Videha_Maithili_English_Thesaurus_Part_01_of_05.pdf" target="_blank" rel="noopener">GitHub Part 01 of 05</a>
+        <a href="https://videha-ejournal.github.io/Videha_Maithili_English_Thesaurus_Part_02_of_05.pdf" target="_blank" rel="noopener">GitHub Part 02 of 05</a>
+        <a href="https://videha-ejournal.github.io/Videha_Maithili_English_Thesaurus_Part_03_of_05.pdf" target="_blank" rel="noopener">GitHub Part 03 of 05</a>
+        <a href="https://videha-ejournal.github.io/Videha_Maithili_English_Thesaurus_Part_04_of_05.pdf" target="_blank" rel="noopener">GitHub Part 04 of 05</a>
+        <a href="https://videha-ejournal.github.io/Videha_Maithili_English_Thesaurus_Part_05_of_05.pdf" target="_blank" rel="noopener">GitHub Part 05 of 05</a>
+        <a href="https://archive.org/download/videha-thesaurus/Videha_Maithili_English_Thesaurus.pdf" target="_blank" rel="noopener">Archive.org single volume</a>
+      </div>
+    </details>
+    <details>
+      <summary><span class="vd-flag">Software</span> VIDEHA THESAURUS APP FOR WINDOWS / MAC OS / LINUX</summary>
+      <div class="vd-resource-links">
+        <a href="https://archive.org/download/videha-thesaurus/WINDOWS_MACOS_LINUX.zip" target="_blank" rel="noopener">Archive.org software package download</a>
+      </div>
+    </details>
+  </div>
+</section>
+
 
       <section class="controls" aria-label="Thesaurus search controls">
-        <select id="volume" aria-label="Choose thesaurus volume">
-          <option value="em">English-Maithili + WordNet</option>
-          <option value="me">Maithili-English + WordNet</option>
-        </select>
-        <input id="q" type="search" placeholder="Search: मैथिली · maithili · maithilī · mithilA · kavi..." autocomplete="off" lang="mai" aria-label="Search word or meaning">
-        <button id="search" type="button">Search</button>
-        <button id="clear" type="button">Clear</button>
-        <label><input type="checkbox" id="deep"> Deep search all chunks</label>
-        <span id="status" role="status" aria-live="polite">Loading manifest...</span>
+        <div class="controls-grid full">
+          <select id="volume" aria-label="Choose thesaurus volume">
+            <option value="em">English-Maithili + WordNet</option>
+            <option value="me">Maithili-English + WordNet</option>
+          </select>
+          <input id="q" type="search" placeholder="Search: मैथिली · maithili · maithilī · mithilA · kavi · synonym · internet..." autocomplete="off" lang="mai" aria-label="Search word or meaning">
+          <button id="search" type="button">Search</button>
+          <button id="clear" type="button">Clear</button>
+          <label><input type="checkbox" id="deep"> Deep search all chunks</label>
+          <span id="status" role="status" aria-live="polite">Loading manifest...</span>
+        </div>
+        <div class="controls-filters full">
+          <label><input type="checkbox" id="filter-base" checked> Base meanings</label>
+          <label><input type="checkbox" id="filter-syn" checked> Synonyms</label>
+          <label><input type="checkbox" id="filter-ant" checked> Antonyms</label>
+          <label><input type="checkbox" id="filter-it" checked> IT glossary</label>
+          <label><input type="checkbox" id="filter-wordnet" checked> WordNet senses / relations</label>
+        </div>
+        <div class="quick-links full" aria-label="Quick search examples">
+          <button type="button" data-q="house">house</button>
+          <button type="button" data-q="घर">घर</button>
+          <button type="button" data-q="prem">prem</button>
+          <button type="button" data-q="prema">prema</button>
+          <button type="button" data-q="internet">internet</button>
+        </div>
       </section>
 
 
