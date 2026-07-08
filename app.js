@@ -161,41 +161,17 @@ function queryForms(q) {
   return Array.from(forms).filter(Boolean);
 }
 
-function editDistanceWithin(a, b, max) {
-  a = a || "";
-  b = b || "";
-  if (a === b) return true;
-  if (!a || !b) return false;
-  if (Math.abs(a.length - b.length) > max) return false;
-  const dp = new Array(b.length + 1);
-  for (let j = 0; j <= b.length; j++) dp[j] = j;
-  for (let i = 1; i <= a.length; i++) {
-    let prev = dp[0];
-    dp[0] = i;
-    let rowMin = dp[0];
-    for (let j = 1; j <= b.length; j++) {
-      const temp = dp[j];
-      dp[j] = Math.min(
-        dp[j] + 1,
-        dp[j - 1] + 1,
-        prev + (a[i - 1] === b[j - 1] ? 0 : 1)
-      );
-      prev = temp;
-      if (dp[j] < rowMin) rowMin = dp[j];
-    }
-    if (rowMin > max) return false;
-  }
-  return dp[b.length] <= max;
-}
-
 function approxContains(text, form) {
   if (!text || !form) return false;
   if (text.includes(form)) return true;
   const tokens = text.split(/\s+/).filter(Boolean);
-  const max = form.length >= 8 ? 2 : 1;
   return tokens.some((tok) => {
     if (tok === form || tok.startsWith(form) || form.startsWith(tok)) return true;
-    return form.length >= 4 && editDistanceWithin(tok, form, max);
+    if (form.length >= 5 && tok.length >= 5) {
+      if (tok.includes(form.slice(0, -1)) || form.includes(tok.slice(0, -1))) return true;
+      if (tok.includes(form.slice(1)) || form.includes(tok.slice(1))) return true;
+    }
+    return false;
   });
 }
 
