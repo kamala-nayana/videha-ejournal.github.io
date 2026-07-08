@@ -223,6 +223,58 @@
     return manifest;
   }
 
+  function normalizeScope(scope) {
+    if (scope === "db1") return "me";
+    if (scope === "db2") return "em";
+    return scope || "both";
+  }
+
+  function countsFromManifest(m) {
+    if (m && m.volumes && m.volumes.em && m.volumes.me) {
+      return {
+        em: Number(m.volumes.em.rows || 0),
+        me: Number(m.volumes.me.rows || 0),
+      };
+    }
+    const meta = (m && m.meta) || {};
+    return {
+      em: Number(meta.english_maithili_total || 0),
+      me: Number(meta.maithili_english_total || 0),
+    };
+  }
+
+  function manifestVolumeInfo(volume) {
+    const modern = (((manifest || {}).volumes || {})[volume]) || null;
+    if (modern) return modern;
+    const dbs = ((manifest || {}).dbs) || {};
+    for (const key of Object.keys(dbs)) {
+      const db = dbs[key];
+      if ((db && db.direction) === volume) return db;
+    }
+    return null;
+  }
+
+  function manifestChunksForVolume(volume) {
+    const info = manifestVolumeInfo(volume);
+    if (!info) return [];
+    if (Array.isArray(info.chunks)) {
+      return info.chunks
+        .map((c) => ({ bucket: c.bucket, file: c.file }))
+        .filter((c) => c.file);
+    }
+    const sheets = Array.isArray(info.sheets) ? info.sheets : [];
+    const out = [];
+    sheets.forEach((sheet) => {
+      (sheet.shards || []).forEach((shard) => {
+        out.push({
+          bucket: shard.key || shard.bucket || "",
+          file: shard.path || shard.file || "",
+        });
+      });
+    });
+    return out.filter((c) => c.file);
+  }
+
   async function loadChunk(file) {
     const url = file.startsWith("http") ? file : BACKEND_BASE + file.replace(/^\/*/, "");
     if (cache.has(url)) return cache.get(url);
@@ -294,7 +346,7 @@
   }
 
   function filesForVolumeQuery(q, volume) {
-    const chunks = (((manifest || {}).volumes || {})[volume] || {}).chunks || [];
+    const chunks = manifestChunksForVolume(volume);
     if (!chunks.length) return [];
     const wanted = new Set(volume === "em" ? latinBucketCandidates(q) : devaBucketCandidates(q));
     if (!wanted.size) return [];
@@ -304,7 +356,7 @@
   }
 
   function allFilesForVolume(volume) {
-    const chunks = (((manifest || {}).volumes || {})[volume] || {}).chunks || [];
+    const chunks = manifestChunksForVolume(volume);
     return chunks.map((c) => c.file);
   }
 
@@ -314,6 +366,34 @@
 
   function htmlEscape(s) {
     return (s || "").replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+  }
+
+  function bestMatchScore(r, forms) {
+    const fields = {
+      headExact: norm([r.h, r.english_headword].filter(Boolean).join(" ")),
+      headLoose: looseRoman([r.h, r.english_headword].filter(Boolean).join(" ")),
+      headDeva: devaLoose([r.h, r.english_headword].filter(Boolean).join(" ")),
+      body: textOf(r),
+    };
+    let best = 0;
+    for (const form of forms) {
+      const exact = norm(form);
+      const loose = looseRoman(form);
+      const deva = devaLoose(form);
+      if (fields.headExact === exact || fields.headLoose === loose || fields.headDeva === deva) best = Math.max(best, 4000);
+      else if (fields.headExact.startsWith(exact) || fields.headLoose.startsWith(loose) || fields.headDeva.startsWith(deva)) best = Math.max(best, 2800);
+      else if (approxContains(fields.headExact, exact) || approxContains(fields.headLoose, loose) || approxContains(fields.headDeva, deva)) best = Math.max(best, 1800);
+      else if (approxContains(fields.body.exact, exact) || approxContains(fields.body.loose, loose) || approxContains(fields.body.deva, deva)) best = Math.max(best, 900);
+    }
+    return best;
+  }
+
+  function sortSearchHits(hits) {
+    hits.sort((a, b) => {
+      if ((b._score || 0) !== (a._score || 0)) return (b._score || 0) - (a._score || 0);
+      return String(a.h || "").localeCompare(String(b.h || ""));
+    });
+    return hits;
   }
 
   async function runUnifiedSearch(opts) {
@@ -326,16 +406,19 @@
     }
     await loadManifest();
     opts.showCounts(manifest);
-    const scope = opts.getScope();
+    const scope = normalizeScope(opts.getScope());
     const volumes = scope === "both" ? ["em", "me"] : [scope];
     const filters = opts.getFilters();
     const limit = opts.getLimit();
-    let files = [];
+    let candidateFiles = [];
+    let deepFiles = [];
     volumes.forEach((v) => {
-      files.push(...filesForVolumeQuery(rawQ, v));
-      if (opts.getDeep()) files.push(...allFilesForVolume(v));
+      candidateFiles.push(...filesForVolumeQuery(rawQ, v));
+      if (opts.getDeep()) deepFiles.push(...allFilesForVolume(v));
     });
-    files = Array.from(new Set(files));
+    candidateFiles = Array.from(new Set(candidateFiles));
+    deepFiles = Array.from(new Set(deepFiles.filter((file) => !candidateFiles.includes(file))));
+    let files = candidateFiles.concat(deepFiles);
     if (!files.length) {
       volumes.forEach((v) => files.push(...allFilesForVolume(v)));
       files = Array.from(new Set(files));
@@ -347,31 +430,29 @@
       const file = files[i];
       const arr = await loadChunk(file);
       for (const r of arr) {
-        const text = textOf(r);
-        const matched = forms.some((form) => {
-          const loose = looseRoman(form);
-          const deva = devaLoose(form);
-          return (
-            approxContains(text.exact, form) ||
-            approxContains(text.loose, loose) ||
-            approxContains(text.deva, deva)
-          );
-        });
-        if (matched && allowByFilters(r, filters)) {
-          hits.push({ ...r, _file: file });
-          if (hits.length >= limit) {
-            opts.render(hits, forms, false);
-            opts.setStatus(`${hits.length} परिणाम भेटल। ${i + 1}/${files.length} chunk देखल गेल।`);
-            return;
-          }
+        const score = bestMatchScore(r, forms);
+        if (score > 0 && allowByFilters(r, filters)) {
+          hits.push({ ...r, _file: file, _score: score });
+        }
+      }
+      sortSearchHits(hits);
+      if (hits.length > limit * 3) hits.length = limit * 3;
+      if (i + 1 === candidateFiles.length && hits.length) {
+        const top = sortSearchHits(hits.slice()).slice(0, limit);
+        const strongest = top[0] && top[0]._score >= 1800;
+        if (strongest || !opts.getDeep()) {
+          opts.render(top, forms, candidateFiles.length === files.length);
+          opts.setStatus(`${top.length} परिणाम भेटल। ${i + 1}/${files.length} chunk देखल गेल।`);
+          return;
         }
       }
       if (i % 4 === 0) {
-        opts.setStatus(`${hits.length} परिणाम भेटल। ${i + 1}/${files.length} chunk देखल गेल।`);
+        opts.setStatus(`${Math.min(hits.length, limit)} परिणाम भेटल। ${i + 1}/${files.length} chunk देखल गेल।`);
       }
     }
-    opts.render(hits, forms, true);
-    opts.setStatus(`${hits.length} परिणाम भेटल। खोज पूर्ण।`);
+    const finalHits = sortSearchHits(hits.slice()).slice(0, limit);
+    opts.render(finalHits, forms, true);
+    opts.setStatus(`${finalHits.length} परिणाम भेटल। खोज पूर्ण।`);
   }
 
   function setupSearchPage() {
@@ -417,8 +498,9 @@
       render,
       renderEmpty: () => { $("results").innerHTML = ""; },
       showCounts: (m) => {
+        const counts = countsFromManifest(m);
         if ($("countsBox")) {
-          $("countsBox").innerHTML = `<div class="vd-mini-card"><b>English-Maithili</b><br>${(m.volumes.em.rows || 0).toLocaleString("en-IN")} final entries</div><div class="vd-mini-card"><b>Maithili-English</b><br>${(m.volumes.me.rows || 0).toLocaleString("en-IN")} final entries</div><div class="vd-mini-card"><b>Source</b><br>Final combined authoritative backend</div>`;
+          $("countsBox").innerHTML = `<div class="vd-mini-card"><b>English-Maithili</b><br>${counts.em.toLocaleString("en-IN")} final entries</div><div class="vd-mini-card"><b>Maithili-English</b><br>${counts.me.toLocaleString("en-IN")} final entries</div><div class="vd-mini-card"><b>Source</b><br>Final combined authoritative backend</div>`;
         }
       }
     };
@@ -477,7 +559,8 @@
       render,
       renderEmpty: () => { $("vjwResults").innerHTML = '<div class="vjw-empty">ऊपर शब्द लिखू — final combined backend मे खोज होयत।</div>'; },
       showCounts: (m) => {
-        $("vjwStatus").innerHTML = `✅ Final authoritative backend ready — EM ${m.volumes.em.rows.toLocaleString("en-IN")} · ME ${m.volumes.me.rows.toLocaleString("en-IN")}`;
+        const counts = countsFromManifest(m);
+        $("vjwStatus").innerHTML = `✅ Final authoritative backend ready — EM ${counts.em.toLocaleString("en-IN")} · ME ${counts.me.toLocaleString("en-IN")}`;
       }
     };
 

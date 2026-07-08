@@ -192,8 +192,51 @@ async function loadManifest() {
   const res = await fetch("data/manifest.json", { cache: "no-store" });
   if (!res.ok) throw new Error(`manifest ${res.status}`);
   manifest = await res.json();
-  $("status").textContent = `EM ${manifest.volumes.em.rows.toLocaleString()} · ME ${manifest.volumes.me.rows.toLocaleString()}`;
+  const counts = countsFromManifest(manifest);
+  $("status").textContent = `EM ${counts.em.toLocaleString()} · ME ${counts.me.toLocaleString()}`;
   return manifest;
+}
+
+function countsFromManifest(m) {
+  if (m && m.volumes && m.volumes.em && m.volumes.me) {
+    return {
+      em: Number(m.volumes.em.rows || 0),
+      me: Number(m.volumes.me.rows || 0),
+    };
+  }
+  const meta = (m && m.meta) || {};
+  return {
+    em: Number(meta.english_maithili_total || 0),
+    me: Number(meta.maithili_english_total || 0),
+  };
+}
+
+function manifestVolumeInfo(vol) {
+  const modern = ((((manifest || {}).volumes || {})[vol]) || null);
+  if (modern) return modern;
+  const dbs = ((manifest || {}).dbs) || {};
+  for (const key of Object.keys(dbs)) {
+    const db = dbs[key];
+    if ((db && db.direction) === vol) return db;
+  }
+  return null;
+}
+
+function getChunksForVolume(vol) {
+  const info = manifestVolumeInfo(vol);
+  if (!info) return [];
+  if (Array.isArray(info.chunks)) return info.chunks;
+  const sheets = Array.isArray(info.sheets) ? info.sheets : [];
+  const out = [];
+  sheets.forEach((sheet) => {
+    (sheet.shards || []).forEach((shard) => {
+      out.push({
+        bucket: shard.key || shard.bucket || "",
+        file: shard.path || shard.file || "",
+      });
+    });
+  });
+  return out.filter((c) => c.file);
 }
 
 function bucketsFor(q) {
@@ -277,6 +320,32 @@ function allowRecord(r) {
   );
 }
 
+function bestMatchScore(r, forms) {
+  const headExact = norm([r.h, r.english_headword].filter(Boolean).join(" "));
+  const headLoose = looseRoman([r.h, r.english_headword].filter(Boolean).join(" "));
+  const headDeva = devaLoose([r.h, r.english_headword].filter(Boolean).join(" "));
+  const body = textOf(r);
+  let best = 0;
+  forms.forEach((form) => {
+    const exact = norm(form);
+    const loose = looseRoman(form);
+    const deva = devaLoose(form);
+    if (headExact === exact || headLoose === loose || headDeva === deva) best = Math.max(best, 4000);
+    else if (headExact.startsWith(exact) || headLoose.startsWith(loose) || headDeva.startsWith(deva)) best = Math.max(best, 2800);
+    else if (approxContains(headExact, exact) || approxContains(headLoose, loose) || approxContains(headDeva, deva)) best = Math.max(best, 1800);
+    else if (approxContains(body.exact, exact) || approxContains(body.loose, loose) || approxContains(body.deva, deva)) best = Math.max(best, 900);
+  });
+  return best;
+}
+
+function sortSearchHits(rows) {
+  rows.sort((a, b) => {
+    if ((b._score || 0) !== (a._score || 0)) return (b._score || 0) - (a._score || 0);
+    return String(a.h || "").localeCompare(String(b.h || ""));
+  });
+  return rows;
+}
+
 async function search() {
   const rawQ = $("q").value;
   const q = norm(rawQ);
@@ -288,16 +357,17 @@ async function search() {
 
   try {
     await loadManifest();
-    let chunks = manifest.volumes[vol].chunks;
+    let chunks = getChunksForVolume(vol);
     if (!$("deep").checked) {
       const bs = new Set(bucketsFor(q));
       chunks = chunks.filter((c) => bs.has(c.bucket));
       if (!chunks.length && q.length > 1) {
         const b1 = q[0];
-        chunks = manifest.volumes[vol].chunks.filter((c) => c.bucket === b1);
+        chunks = getChunksForVolume(vol).filter((c) => c.bucket === b1);
       }
     }
-    if (!chunks.length) chunks = manifest.volumes[vol].chunks;
+    if (!chunks.length) chunks = getChunksForVolume(vol);
+    if (!chunks.length) throw new Error(`No chunks available for volume ${vol}`);
 
     $("status").textContent = `Searching ${chunks.length} small chunk${chunks.length === 1 ? "" : "s"}...`;
 
@@ -306,32 +376,21 @@ async function search() {
     for (let i = 0; i < chunks.length; i++) {
       const arr = await loadChunk(chunks[i].file);
       for (const r of arr) {
-        const text = textOf(r);
-        const matched = forms.some((form) => {
-          const loose = looseRoman(form);
-          const deva = devaLoose(form);
-          return (
-            approxContains(text.exact, form) ||
-            approxContains(text.loose, loose) ||
-            approxContains(text.deva, deva)
-          );
-        });
-        if (matched && allowRecord(r)) {
-          hits.push(r);
-          if (hits.length >= 100) {
-            render(hits, vol);
-            $("status").textContent = `100 results; searched ${i + 1}/${chunks.length} chunks`;
-            return;
-          }
+        const score = bestMatchScore(r, forms);
+        if (score > 0 && allowRecord(r)) {
+          hits.push({ ...r, _score: score });
         }
       }
+      sortSearchHits(hits);
+      if (hits.length > 300) hits.length = 300;
       if (i % 3 === 0) {
-        $("status").textContent = `${hits.length} results; searched ${i + 1}/${chunks.length} chunks`;
+        $("status").textContent = `${Math.min(hits.length, 100)} results; searched ${i + 1}/${chunks.length} chunks`;
       }
     }
 
-    render(hits, vol);
-    $("status").textContent = `${hits.length} results; search complete`;
+    const finalHits = sortSearchHits(hits.slice()).slice(0, 100);
+    render(finalHits, vol);
+    $("status").textContent = `${finalHits.length} results; search complete`;
   } catch (e) {
     console.error(e);
     $("status").textContent = `Search failed: ${e.message}`;
