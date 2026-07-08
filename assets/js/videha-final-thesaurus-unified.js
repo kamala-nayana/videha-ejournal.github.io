@@ -188,23 +188,31 @@
     return [q.length >= 2 ? q.slice(0, 2) : q[0]];
   }
 
-  function firstLatinKey(s) {
-    s = stripDiacritics(s).toLowerCase();
-    for (const ch of s) {
-      if (ch >= "a" && ch <= "z") return ch;
-      if (ch >= "0" && ch <= "9") return "0";
-    }
-    return "other";
+  function latinBucketCandidates(rawQ) {
+    const out = new Set();
+    queryForms(rawQ).forEach((form) => {
+      const s = looseRoman(form).replace(/[^a-z0-9 ]/g, " ").trim();
+      if (!s) return;
+      const tok = s.split(/\s+/)[0] || "";
+      if (!tok) return;
+      out.add(tok.slice(0, 2));
+      out.add(tok.slice(0, 1));
+    });
+    return Array.from(out).filter(Boolean);
   }
 
-  function firstDevaKey(s) {
-    for (const ch of (s || "")) {
-      if ("अआइईउऊऋॠऌॡएऐओऔकखगघङचछजझञटठडढणतथदधनपफबभमयरलवशषसहक्षत्रज्ञड़ढ़".includes(ch)) return ch;
-    }
-    for (const ch of (s || "")) {
-      if (/[\u0900-\u097f]/.test(ch)) return ch;
-    }
-    return "other";
+  function devaBucketCandidates(rawQ) {
+    const out = new Set();
+    queryForms(rawQ).forEach((form) => {
+      const src = hasDeva(form) ? form : latinToDeva(form);
+      const s = (src || "").replace(/[^\u0900-\u097f0-9]+/g, " ").trim();
+      if (!s) return;
+      const tok = s.split(/\s+/)[0] || "";
+      if (!tok) return;
+      out.add(tok.slice(0, 2));
+      out.add(tok.slice(0, 1));
+    });
+    return Array.from(out).filter(Boolean);
   }
 
   async function loadManifest() {
@@ -286,27 +294,18 @@
   }
 
   function filesForVolumeQuery(q, volume) {
-    const m = manifest.indexes;
-    const files = [];
-    const lat = firstLatinKey(q);
-    const deva = firstDevaKey(hasDeva(q) ? q : latinToDeva(q));
-    if (volume === "em") {
-      const en = m.en_maithili_by_english_head || {};
-      if (en[lat]) files.push(...en[lat].files.map((x) => x.file));
-    } else {
-      const mai = m.maithili_english_by_maithili_head || {};
-      if (mai[deva]) files.push(...mai[deva].files.map((x) => x.file));
-    }
-    return Array.from(new Set(files));
+    const chunks = (((manifest || {}).volumes || {})[volume] || {}).chunks || [];
+    if (!chunks.length) return [];
+    const wanted = new Set(volume === "em" ? latinBucketCandidates(q) : devaBucketCandidates(q));
+    if (!wanted.size) return [];
+    return chunks
+      .filter((c) => wanted.has(c.bucket))
+      .map((c) => c.file);
   }
 
   function allFilesForVolume(volume) {
-    const idx = volume === "em"
-      ? (manifest.indexes.en_maithili_by_english_head || {})
-      : (manifest.indexes.maithili_english_by_maithili_head || {});
-    const out = [];
-    Object.keys(idx).forEach((k) => idx[k].files.forEach((f) => out.push(f.file)));
-    return Array.from(new Set(out));
+    const chunks = (((manifest || {}).volumes || {})[volume] || {}).chunks || [];
+    return chunks.map((c) => c.file);
   }
 
   function sourceName(file) {
