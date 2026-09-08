@@ -4,3 +4,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://videha-ejournal.github.io/sitemap.xml
+Sitemap: https://videha-ejournal.github.io/gajendra-preeti/sitemap.xml
