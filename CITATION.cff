@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this archived dataset, cite the Zenodo release DOI below."
+title: "videha-ejournal.github.io"
+type: dataset
+authors:
+  - family-names: "Thakur"
+    given-names: "Gajendra"
+    affiliation: "Videha — First Maithili Fortnightly eJournal"
+version: "archive-2026-09-14"
+date-released: "2026-09-14"
+doi: "10.5281/zenodo.22755014"
+url: "https://videha-ejournal.github.io/"
+repository-code: "https://github.com/videha-ejournal/videha-ejournal.github.io"
+license: "CC-BY-4.0"
+abstract: >-
+  Archived research-access and publication-support release for the Videha
+  GitHub Pages research environment, part of Videha — First Maithili
+  Fortnightly eJournal, ISSN 2229-547X.
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22755014"
+    description: "Zenodo DOI for GitHub release archive-2026-09-14"
+  - type: other
+    value: "ISSN 2229-547X"
+    description: "Videha — First Maithili Fortnightly eJournal ISSN"
+  - type: url
+    value: "https://www.videha.co.in/"
+    description: "Primary Videha publication site"
+  - type: url
+    value: "https://videha-ejournal.github.io/videha/"
+    description: "Videha GitHub mirror"
+  - type: url
+    value: "https://github.com/videha-ejournal/videha-ejournal.github.io"
+    description: "Source repository"
