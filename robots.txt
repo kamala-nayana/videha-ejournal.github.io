@@ -1,7 +1,13 @@
 # robots.txt · videha-ejournal.github.io
 # Videha — First Maithili Fortnightly eJournal · ISSN 2229-547X
+# Allow well-behaved crawlers to index the GitHub Pages sites.
+
 User-agent: *
 Allow: /
 
+# GitHub Pages project sitemaps
 Sitemap: https://videha-ejournal.github.io/sitemap.xml
+Sitemap: https://videha-ejournal.github.io/videha/sitemap.xml
 Sitemap: https://videha-ejournal.github.io/gajendra-preeti/sitemap.xml
+Sitemap: https://videha-ejournal.github.io/mithila-vajji-anga/sitemap.xml
+Sitemap: https://videha-ejournal.github.io/videha-literature-festival/sitemap.xml
